@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ObjectPlacer : MonoBehaviour
 {
-    public bool DrawDebugBoxes = true;
+    public bool DrawDebugBoxes = false;
 
     public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
 
@@ -83,8 +83,93 @@ public class ObjectPlacer : MonoBehaviour
             {
                 DrawBox(toPlace, Color.red);
             }
+
+            var rotation = Quaternion.LookRotation(toPlace.Normal, Vector3.forward);
+
+            switch (toPlace.ObjType)
+            {
+                case ObjectType.Board:
+                    CreateWideBuilding(toPlace.Position, rotation);
+                    break;
+            }
         }
     }
+
+    public void CreateWideBuilding(Vector3 positionCenter, Quaternion rotation)
+    {
+        // Stay center in the square but move down to the ground
+        var position = positionCenter - new Vector3(0, WideBuildingSize.y * .5f, 0);
+
+        GameObject newObject = Instantiate(SaloonBuildingPrefab, position, rotation) as GameObject;
+
+        if (newObject != null)
+        {
+            // Set the parent of the new object the GameObject it was placed on
+            newObject.transform.parent = gameObject.transform;
+
+            //newObject.transform.localScale = RescaleToDesiredSizeProportional(SaloonBuildingPrefab, WideBuildingSize);
+        }
+    }
+
+    private Vector3 RescaleToDesiredSizeProportional(GameObject objectToScale, Vector3 desiredSize)
+    {
+        float scaleFactor = CalcScaleFactorHelper(new List<GameObject> { objectToScale }, desiredSize);
+
+        return objectToScale.transform.localScale * scaleFactor;
+    }
+
+    private float CalcScaleFactorHelper(List<GameObject> objects, Vector3 desiredSize)
+    {
+        float maxScale = float.MaxValue;
+
+        foreach (var obj in objects)
+        {
+            var curBounds = GetBoundsForAllChildren(obj).size;
+            var difference = curBounds - desiredSize;
+
+            float ratio;
+
+            if (difference.x > difference.y && difference.x > difference.z)
+            {
+                ratio = desiredSize.x / curBounds.x;
+            }
+            else if (difference.y > difference.x && difference.y > difference.z)
+            {
+                ratio = desiredSize.y / curBounds.y;
+            }
+            else
+            {
+                ratio = desiredSize.z / curBounds.z;
+            }
+
+            if (ratio < maxScale)
+            {
+                maxScale = ratio;
+            }
+        }
+
+        return maxScale;
+    }
+
+    private Bounds GetBoundsForAllChildren(GameObject findMyBounds)
+    {
+        Bounds result = new Bounds(Vector3.zero, Vector3.zero);
+
+        foreach (var renderer in findMyBounds.GetComponentsInChildren<Renderer>())
+        {
+            if (result.extents == Vector3.zero)
+            {
+                result = renderer.bounds;
+            }
+            else
+            {
+                result.Encapsulate(renderer.bounds);
+            }
+        }
+
+        return result;
+    }
+
     private void DrawBox(PlacementResult boxLocation, Color color)
     {
         if (boxLocation != null)
