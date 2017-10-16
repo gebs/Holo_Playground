@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint1v3", "Sprint1v3.csproj", "{C87C1CAB-6659-8A58-827E-295F80D7C668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint1v3.Editor", "Sprint1v3.Editor.csproj", "{FD89298F-7CF0-5BAB-99BC-ADEF5862E0EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C87C1CAB-6659-8A58-827E-295F80D7C668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87C1CAB-6659-8A58-827E-295F80D7C668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87C1CAB-6659-8A58-827E-295F80D7C668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87C1CAB-6659-8A58-827E-295F80D7C668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD89298F-7CF0-5BAB-99BC-ADEF5862E0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD89298F-7CF0-5BAB-99BC-ADEF5862E0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD89298F-7CF0-5BAB-99BC-ADEF5862E0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD89298F-7CF0-5BAB-99BC-ADEF5862E0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
