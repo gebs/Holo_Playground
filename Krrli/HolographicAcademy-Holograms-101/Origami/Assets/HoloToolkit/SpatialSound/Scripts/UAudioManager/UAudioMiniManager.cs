@@ -15,9 +15,15 @@ namespace HoloToolkit.Unity
         /// </summary>
         public void PlayAll()
         {
+<<<<<<< Updated upstream
             for (int i = 0; i < Events.Length; i++)
             {
                 PlayEvent(this.Events[i]);
+=======
+            for (int i = 0; i < events.Length; i++)
+            {
+                PlayEvent(this.events[i]);
+>>>>>>> Stashed changes
             }
         }
 
@@ -27,14 +33,21 @@ namespace HoloToolkit.Unity
         /// <param name="audioEvent">The MiniAudioEvent to play</param>
         private void PlayEvent(MiniAudioEvent audioEvent)
         {
+<<<<<<< Updated upstream
             if (audioEvent.PrimarySource == null)
             {
                 Debug.LogErrorFormat(this, "Emitter on object \"{0}\" is null! Cannot play sound.", audioEvent.Name);
+=======
+            if (audioEvent.primarySource == null)
+            {
+                Debug.LogErrorFormat(this, "Emitter on object \"{0}\" is null! Cannot play sound.", audioEvent.name);
+>>>>>>> Stashed changes
                 return;
             }
 
             if (audioEvent.IsContinuous())
             {
+<<<<<<< Updated upstream
                 if (audioEvent.SecondarySource == null)
                 {
                     Debug.LogErrorFormat(this, "Secondary emitter on event \"{0}\" is null! Cannot play continuous sound.", audioEvent.Name);
@@ -42,6 +55,15 @@ namespace HoloToolkit.Unity
             }
 
             ActiveEvent tempEvent = new ActiveEvent(audioEvent, audioEvent.PrimarySource.gameObject, audioEvent.PrimarySource, audioEvent.SecondarySource);
+=======
+                if (audioEvent.secondarySource == null)
+                {
+                    Debug.LogErrorFormat(this, "Secondary emitter on event \"{0}\" is null! Cannot play continuous sound.", audioEvent.name);
+                }
+            }
+
+            ActiveEvent tempEvent = new ActiveEvent(audioEvent, audioEvent.primarySource.gameObject, audioEvent.primarySource, audioEvent.secondarySource);
+>>>>>>> Stashed changes
 
             // Do this last. The base class owns this event once we pass it to PlayContainer, and may dispose it if it cannot be played.
             PlayContainer(tempEvent);
@@ -52,9 +74,15 @@ namespace HoloToolkit.Unity
         /// </summary>
         public void SetMute(bool mute)
         {
+<<<<<<< Updated upstream
             for (int i = 0; i < Events.Length; i++)
             {
                 Events[i].PrimarySource.mute = mute;
+=======
+            for (int i = 0; i < events.Length; i++)
+            {
+                events[i].primarySource.mute = mute;
+>>>>>>> Stashed changes
             }
         }
 
@@ -70,9 +98,15 @@ namespace HoloToolkit.Unity
                 return;
             }
 
+<<<<<<< Updated upstream
             for (int i = 0; i < this.Events.Length; i++)
             {
                 Events[i].PrimarySource.pitch = newPitch;
+=======
+            for (int i = 0; i < this.events.Length; i++)
+            {
+                events[i].primarySource.pitch = newPitch;
+>>>>>>> Stashed changes
             }
         }
     }

@@ -11,10 +11,18 @@ namespace HoloToolkit.Unity
     [Serializable]
     public class UAudioClip
     {
+<<<<<<< Updated upstream
         public UnityEngine.AudioClip Sound = null;
         public bool Looping = false;
 
         public float DelayCenter = 0;
         public float DelayRandomization = 0;
+=======
+        public UnityEngine.AudioClip sound = null;
+        public bool looping = false;
+
+        public float delayCenter = 0;
+        public float delayRandomization = 0;
+>>>>>>> Stashed changes
     }
 }

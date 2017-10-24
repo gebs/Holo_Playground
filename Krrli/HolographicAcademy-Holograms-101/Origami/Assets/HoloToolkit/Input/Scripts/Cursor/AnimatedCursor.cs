@@ -13,6 +13,7 @@ namespace HoloToolkit.Unity.InputModule
     public class AnimatedCursor : Cursor
     {
         /// <summary>
+<<<<<<< Updated upstream
         /// Enabled state Data when enabling
         /// </summary>
         [Obsolete("Use InputEnabledParameter")]
@@ -25,6 +26,43 @@ namespace HoloToolkit.Unity.InputModule
         [Obsolete("Use InputDisabledParameter")]
         [Tooltip("Cursor State Data to use when the cursor is disabled")]
         public AnimCursorDatum DisableStateData;
+=======
+        /// Data struct for cursor state information for the Animated Cursor, which leverages the Unity animation system..
+        /// This defines a modification to an Unity animation parameter, based on cursor state.
+        /// </summary>
+        [Serializable]
+        public struct AnimCursorDatum
+        {
+            public string Name;
+            public CursorStateEnum CursorState;
+
+            /// <summary>
+            /// Types that an animation parameter can have in the Unity animation system.
+            /// </summary>
+            public enum AnimInputTypeEnum
+            {
+                Int,
+                Trigger,
+                Bool,
+                Float
+            }
+
+            [Tooltip("Type of the animation parameter to modify.")]
+            public AnimInputTypeEnum AnimInputType;
+
+            [Tooltip("Name of the animation parameter to modify.")]
+            public string AnimParameterName;
+
+            [Tooltip("If the animation parameter type is a bool, value to set. Ignored otherwise.")]
+            public bool AnimBoolValue;
+
+            [Tooltip("If the animation parameter type is an int, value to set. Ignored otherwise.")]
+            public int AnimIntValue;
+
+            [Tooltip("If the animation parameter type is a float, value to set. Ignored otherwise.")]
+            public float AnimFloatValue;
+        }
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Serialized set of cursor state data
@@ -34,35 +72,68 @@ namespace HoloToolkit.Unity.InputModule
         [SerializeField]
         public AnimCursorDatum[] CursorStateData;
 
+<<<<<<< Updated upstream
         [Tooltip("Animator parameter to set when input is enabled.")]
         public AnimatorParameter InputEnabledParameter;
 
         [Tooltip("Animator parameter to set when input is disabled.")]
         public AnimatorParameter InputDisabledParameter;
+=======
+        /// <summary>
+        /// Enabled state Data when enabling
+        /// </summary>
+        [Tooltip("Cursor State Data to use when enabling the cursor")]
+        public AnimCursorDatum EnableStateData;
+
+        /// <summary>
+        /// Disabled state Data when disabled
+        /// </summary>
+        [Tooltip("Cursor State Data to use when the cursor is disabled")]
+        public AnimCursorDatum DisableStateData;
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Link the the cursor animator
         /// </summary>
         [SerializeField]
         [Tooltip("Animator for the cursor")]
+<<<<<<< Updated upstream
         protected Animator CursorAnimator;
 
         /// <summary>
         /// Change anim state when enabling input
+=======
+        protected Animator CursorAnimator = null;
+
+        /// <summary>
+        /// Change anim stage when enabled
+>>>>>>> Stashed changes
         /// </summary>
         public override void OnInputEnabled()
         {
             base.OnInputEnabled();
+<<<<<<< Updated upstream
             SetAnimatorParameter(InputEnabledParameter);
         }
 
         /// <summary>
         /// Change anim state when disabling input
+=======
+            SetCursorState(EnableStateData);
+        }
+
+        /// <summary>
+        /// Change anim stage when disabled
+>>>>>>> Stashed changes
         /// </summary>
         public override void OnInputDisabled()
         {
             base.OnInputDisabled();
+<<<<<<< Updated upstream
             SetAnimatorParameter(InputDisabledParameter);
+=======
+            SetCursorState(DisableStateData);
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -75,6 +146,7 @@ namespace HoloToolkit.Unity.InputModule
 
             if (modifier != null)
             {
+<<<<<<< Updated upstream
                 if ((modifier.CursorParameters != null) && (modifier.CursorParameters.Length > 0))
                 {
                     OnCursorStateChange(CursorStateEnum.Contextual);
@@ -82,6 +154,12 @@ namespace HoloToolkit.Unity.InputModule
                     {
                         SetAnimatorParameter(param);
                     }
+=======
+                if(!string.IsNullOrEmpty(modifier.CursorTriggerName))
+                {
+                    OnCursorStateChange(CursorStateEnum.Contextual);
+                    CursorAnimator.SetTrigger(modifier.CursorTriggerName);
+>>>>>>> Stashed changes
                 }
             }
             else
@@ -98,6 +176,7 @@ namespace HoloToolkit.Unity.InputModule
         public override void OnCursorStateChange(CursorStateEnum state)
         {
             base.OnCursorStateChange(state);
+<<<<<<< Updated upstream
             if (state != CursorStateEnum.Contextual)
             {
                 for (int i = 0; i < CursorStateData.Length; i++)
@@ -105,6 +184,15 @@ namespace HoloToolkit.Unity.InputModule
                     if (CursorStateData[i].CursorState == state)
                     {
                         SetAnimatorParameter(CursorStateData[i].Parameter);
+=======
+            if(state != CursorStateEnum.Contextual)
+            {
+                for(int i = 0; i < CursorStateData.Length; i++)
+                {
+                    if(CursorStateData[i].CursorState == state)
+                    {
+                        SetCursorState(CursorStateData[i]);
+>>>>>>> Stashed changes
                     }
                 }
             }
@@ -113,8 +201,13 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Based on the type of animator state info pass it through to the animator
         /// </summary>
+<<<<<<< Updated upstream
         /// <param name="animationParameter"></param>
         protected void SetAnimatorParameter(AnimatorParameter animationParameter)
+=======
+        /// <param name="stateDatum"></param>
+        private void SetCursorState(AnimCursorDatum stateDatum)
+>>>>>>> Stashed changes
         {
             // Return if we do not have an animator
             if (CursorAnimator == null)
@@ -122,6 +215,7 @@ namespace HoloToolkit.Unity.InputModule
                 return;
             }
 
+<<<<<<< Updated upstream
             switch (animationParameter.Type)
             {
                 case AnimatorControllerParameterType.Bool:
@@ -139,4 +233,25 @@ namespace HoloToolkit.Unity.InputModule
             }
         }
     }
+=======
+            switch (stateDatum.AnimInputType)
+            {
+                case AnimCursorDatum.AnimInputTypeEnum.Bool:
+                    CursorAnimator.SetBool(stateDatum.AnimParameterName, stateDatum.AnimBoolValue);
+                    break;
+                case AnimCursorDatum.AnimInputTypeEnum.Float:
+                    CursorAnimator.SetFloat(stateDatum.AnimParameterName, stateDatum.AnimFloatValue);
+                    break;
+                case AnimCursorDatum.AnimInputTypeEnum.Int:
+                    CursorAnimator.SetInteger(stateDatum.AnimParameterName, stateDatum.AnimIntValue);
+                    break;
+                case AnimCursorDatum.AnimInputTypeEnum.Trigger:
+                    CursorAnimator.SetTrigger(stateDatum.AnimParameterName);
+                    break;
+            }
+        }
+
+    }
+
+>>>>>>> Stashed changes
 }

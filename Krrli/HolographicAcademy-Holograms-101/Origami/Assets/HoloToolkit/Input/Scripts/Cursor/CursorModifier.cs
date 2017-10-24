@@ -26,15 +26,24 @@ namespace HoloToolkit.Unity.InputModule
         [Tooltip("Should the cursor snap to the object.")]
         public bool SnapCursor = false;
 
+<<<<<<< Updated upstream
         [Tooltip("If true, the normal from the pointing vector will be used to orient the cursor " +
+=======
+        [Tooltip("If true, the normal from the gaze vector will be used to orient the cursor " +
+>>>>>>> Stashed changes
                  "instead of the targeted object's normal at point of contact.")]
         public bool UseGazeBasedNormal = false;
 
         [Tooltip("Should the cursor be hidding when this object is focused.")]
         public bool HideCursorOnFocus = false;
 
+<<<<<<< Updated upstream
         [Tooltip("Cursor animation parameters to set when this object is focused. Leave empty for none.")]
         public AnimatorParameter[] CursorParameters;
+=======
+        [Tooltip("Cursor animation event to trigger when this object is gazed. Leave empty for none.")]
+        public string CursorTriggerName;
+>>>>>>> Stashed changes
 
         private void Awake()
         {
@@ -65,10 +74,15 @@ namespace HoloToolkit.Unity.InputModule
             }
             else
             {
+<<<<<<< Updated upstream
                 FocusDetails focusDetails = FocusManager.Instance.GetFocusDetails(cursor.Pointer);
 
                 // Else, consider the modifiers on the cursor modifier, but don't snap
                 position = focusDetails.Point + HostTransform.TransformVector(CursorOffset);
+=======
+                // Else, consider the modifiers on the cursor modifier, but don't snap
+                position = GazeManager.Instance.HitPosition + HostTransform.TransformVector(CursorOffset);
+>>>>>>> Stashed changes
             }
 
             return position;
@@ -78,7 +92,11 @@ namespace HoloToolkit.Unity.InputModule
         {
             Quaternion rotation;
 
+<<<<<<< Updated upstream
             Vector3 forward = UseGazeBasedNormal ? -cursor.Pointer.Ray.direction : HostTransform.rotation * CursorNormal;
+=======
+            Vector3 forward = UseGazeBasedNormal ? -GazeManager.Instance.GazeNormal : HostTransform.rotation * CursorNormal;
+>>>>>>> Stashed changes
 
             // Determine the cursor forward
             if (forward.magnitude > 0)

@@ -17,7 +17,11 @@ namespace HoloToolkit.Sharing.SyncModel
     /// </summary>
     public class SyncSettings
     {
+<<<<<<< Updated upstream
 #if UNITY_WSA && !UNITY_EDITOR
+=======
+#if UNITY_METRO && !UNITY_EDITOR
+>>>>>>> Stashed changes
         private readonly Dictionary<TypeInfo, string> dataModelTypeToName = new Dictionary<TypeInfo, string>();
         private readonly Dictionary<string, TypeInfo> dataModelNameToType = new Dictionary<string, TypeInfo>();
 #else
@@ -46,7 +50,11 @@ namespace HoloToolkit.Sharing.SyncModel
             return retVal;
         }
 
+<<<<<<< Updated upstream
 #if UNITY_WSA && !UNITY_EDITOR
+=======
+#if UNITY_METRO && !UNITY_EDITOR
+>>>>>>> Stashed changes
         public TypeInfo GetDataModelType(string name)
         {
             TypeInfo retVal;

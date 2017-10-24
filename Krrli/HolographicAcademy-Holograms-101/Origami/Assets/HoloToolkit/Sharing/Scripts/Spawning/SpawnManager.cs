@@ -4,7 +4,10 @@
 //
 
 using System;
+<<<<<<< Updated upstream
 using System.Collections.Generic;
+=======
+>>>>>>> Stashed changes
 using UnityEngine;
 using HoloToolkit.Sharing.SyncModel;
 
@@ -22,12 +25,15 @@ namespace HoloToolkit.Sharing.Spawning
 
         protected SyncArray<T> SyncSource;
 
+<<<<<<< Updated upstream
         protected List<GameObject> SyncSpawnObjectListInternal = new List<GameObject>(0);
 
         public bool IsSpawningObjects { get; protected set; }
 
         public List<GameObject> SyncSpawnObjectList { get { return SyncSpawnObjectListInternal; } }
 
+=======
+>>>>>>> Stashed changes
         protected virtual void Start()
         {
             // SharingStage should be valid at this point, but we may not be connected.
@@ -44,6 +50,7 @@ namespace HoloToolkit.Sharing.Spawning
 
         protected virtual void Connected(object sender = null, EventArgs e = null)
         {
+<<<<<<< Updated upstream
             if (SyncSource != null)
             {
                 IsSpawningObjects = true;
@@ -65,6 +72,12 @@ namespace HoloToolkit.Sharing.Spawning
                 ReSpawnObjects();
                 IsSpawningObjects = false;
             }
+=======
+            NetworkManager.SharingManagerConnected -= Connected;
+
+            SetDataModelSource();
+            RegisterToDataModel();
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -81,12 +94,15 @@ namespace HoloToolkit.Sharing.Spawning
             SyncSource.ObjectRemoved += OnObjectRemoved;
         }
 
+<<<<<<< Updated upstream
         private void UnRegisterToDataModel()
         {
             SyncSource.ObjectAdded -= OnObjectAdded;
             SyncSource.ObjectRemoved -= OnObjectRemoved;
         }
 
+=======
+>>>>>>> Stashed changes
         private void OnObjectAdded(T addedObject)
         {
             InstantiateFromNetwork(addedObject);
@@ -97,6 +113,7 @@ namespace HoloToolkit.Sharing.Spawning
             RemoveFromNetwork(removedObject);
         }
 
+<<<<<<< Updated upstream
         private void ReSpawnObjects()
         {
             T[] objs = SyncSource.GetDataArray();
@@ -107,6 +124,8 @@ namespace HoloToolkit.Sharing.Spawning
             }
         }
 
+=======
+>>>>>>> Stashed changes
         /// <summary>
         /// Delete the data model for an object and all its related game objects.
         /// </summary>

@@ -1,19 +1,38 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+<<<<<<< Updated upstream
 using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
+=======
+using System;
+using UnityEngine;
+
+namespace HoloToolkit.Unity.InputModule
+{ 
+>>>>>>> Stashed changes
     /// <summary>
     /// Base class for an input source.
     /// </summary>
     public abstract class BaseInputSource : MonoBehaviour, IInputSource
     {
+<<<<<<< Updated upstream
+=======
+        protected InputManager inputManager;
+  
+        protected virtual void Start()
+        {
+            inputManager = InputManager.Instance;
+        }
+
+>>>>>>> Stashed changes
         public abstract SupportedInputInfo GetSupportedInputInfo(uint sourceId);
 
         public bool SupportsInputInfo(uint sourceId, SupportedInputInfo inputInfo)
         {
+<<<<<<< Updated upstream
             return ((GetSupportedInputInfo(sourceId) & inputInfo) == inputInfo);
         }
 
@@ -38,5 +57,13 @@ namespace HoloToolkit.Unity.InputModule
         public abstract bool TryGetGrasp(uint sourceId, out bool isPressed);
 
         public abstract bool TryGetMenu(uint sourceId, out bool isPressed);
+=======
+            return (GetSupportedInputInfo(sourceId) & inputInfo) != 0;
+        }
+
+        public abstract bool TryGetPosition(uint sourceId, out Vector3 position);
+
+        public abstract bool TryGetOrientation(uint sourceId, out Quaternion orientation);
+>>>>>>> Stashed changes
     }
 }

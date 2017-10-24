@@ -6,11 +6,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
 using System.Threading;
 using System.Threading.Tasks;
 #endif
 
+<<<<<<< Updated upstream
+=======
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+>>>>>>> Stashed changes
 namespace HoloToolkit.Unity.SpatialMapping
 {
     /// <summary>
@@ -184,7 +195,11 @@ namespace HoloToolkit.Unity.SpatialMapping
             // Pause our work, and continue on the next frame.
             yield return null;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
             // When not in the unity editor we can use a cool background task to help manage FindPlanes().
             Task<BoundedPlane[]> planeTask = Task.Run(() => PlaneFinding.FindPlanes(meshData, snapToGravityThreshold, MinArea));
         
@@ -241,12 +256,17 @@ namespace HoloToolkit.Unity.SpatialMapping
             // Create SurfacePlane objects to represent each plane found in the Spatial Mapping mesh.
             for (int index = 0; index < planes.Length; index++)
             {
+<<<<<<< Updated upstream
                 GameObject destinationPlane;
+=======
+                GameObject destPlane;
+>>>>>>> Stashed changes
                 BoundedPlane boundedPlane = planes[index];
 
                 // Instantiate a SurfacePlane object, which will have the same bounds as our BoundedPlane object.
                 if (SurfacePlanePrefab != null && SurfacePlanePrefab.GetComponent<SurfacePlane>() != null)
                 {
+<<<<<<< Updated upstream
                     destinationPlane = Instantiate(SurfacePlanePrefab);
                 }
                 else
@@ -258,6 +278,19 @@ namespace HoloToolkit.Unity.SpatialMapping
 
                 destinationPlane.transform.parent = planesParent.transform;
                 var surfacePlane = destinationPlane.GetComponent<SurfacePlane>();
+=======
+                    destPlane = Instantiate(SurfacePlanePrefab);
+                }
+                else
+                {
+                    destPlane = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    destPlane.AddComponent<SurfacePlane>();
+                    destPlane.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                }
+
+                destPlane.transform.parent = planesParent.transform;
+                SurfacePlane surfacePlane = destPlane.GetComponent<SurfacePlane>();
+>>>>>>> Stashed changes
 
                 // Set the Plane property to adjust transform position/scale/rotation and determine plane type.
                 surfacePlane.Plane = boundedPlane;
@@ -266,13 +299,22 @@ namespace HoloToolkit.Unity.SpatialMapping
 
                 if ((destroyPlanesMask & surfacePlane.PlaneType) == surfacePlane.PlaneType)
                 {
+<<<<<<< Updated upstream
                     DestroyImmediate(destinationPlane);
+=======
+                    DestroyImmediate(destPlane);
+>>>>>>> Stashed changes
                 }
                 else
                 {
                     // Set the plane to use the same layer as the SpatialMapping mesh.
+<<<<<<< Updated upstream
                     destinationPlane.layer = SpatialMappingManager.Instance.PhysicsLayer;
                     ActivePlanes.Add(destinationPlane);
+=======
+                    destPlane.layer = SpatialMappingManager.Instance.PhysicsLayer;
+                    ActivePlanes.Add(destPlane);
+>>>>>>> Stashed changes
                 }
 
                 // If too much time has passed, we need to return control to the main game loop.
@@ -305,4 +347,39 @@ namespace HoloToolkit.Unity.SpatialMapping
             surfacePlane.IsVisible = ((drawPlanesMask & surfacePlane.PlaneType) == surfacePlane.PlaneType);
         }
     }
+<<<<<<< Updated upstream
+=======
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Editor extension class to enable multi-selection of the 'Draw Planes' and 'Destroy Planes' options in the Inspector.
+    /// </summary>
+    [CustomEditor(typeof(SurfaceMeshesToPlanes))]
+    public class PlaneTypesEnumEditor : Editor
+    {
+        public SerializedProperty drawPlanesMask;
+        public SerializedProperty destroyPlanesMask;
+
+        void OnEnable()
+        {
+            drawPlanesMask = serializedObject.FindProperty("drawPlanesMask");
+            destroyPlanesMask = serializedObject.FindProperty("destroyPlanesMask");
+        }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            serializedObject.Update();
+
+            drawPlanesMask.intValue = (int)((PlaneTypes)EditorGUILayout.EnumMaskField
+                    ("Draw Planes", (PlaneTypes)drawPlanesMask.intValue));
+
+            destroyPlanesMask.intValue = (int)((PlaneTypes)EditorGUILayout.EnumMaskField
+                    ("Destroy Planes", (PlaneTypes)destroyPlanesMask.intValue));
+
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+#endif
+>>>>>>> Stashed changes
 }

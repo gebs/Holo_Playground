@@ -1,7 +1,11 @@
 ## [Spatial Understanding]()
 Scripts, Prefabs, and Test Scenes that leverage Spatial Understanding related features.
 
+<<<<<<< Updated upstream
 See the [HoloToolkit Spatial Mapping](../SpatialMapping) documentation to ensure your project is set up correctly.
+=======
+See the [HoloToolkit Spatial Mapping](HoloToolkit/SpatialMapping) documentation to ensure your project is set up correctly.
+>>>>>>> Stashed changes
 
 **IMPORTANT**: Please make sure to add the Spatial Perception capability in your app, in Unity under  
 Edit -> Project Settings -> Player -> Settings for Windows Store -> Publishing Settings -> Capabilities  
@@ -20,7 +24,11 @@ SpatialUnderstanding addon that can be used for topology, object detection, and 
 ### [Prefabs](Prefabs)
 The following prefab makes it easy to quickly get started using the Spatial Understanding Modules.
 
+<<<<<<< Updated upstream
 #### SpatialUnderstanding.prefab
+=======
+####SpatialUnderstanding.prefab
+>>>>>>> Stashed changes
 This prefab is used to control the state and flow of the scanning process used in the understanding module, provides the means to visualize the scanning process.
 
 ### [Scripts](Scripts)

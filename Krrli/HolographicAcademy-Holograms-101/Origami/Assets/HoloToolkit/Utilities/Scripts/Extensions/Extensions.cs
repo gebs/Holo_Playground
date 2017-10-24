@@ -1,10 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+<<<<<<< Updated upstream
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+=======
+>>>>>>> Stashed changes
 using UnityEngine;
 
 namespace HoloToolkit.Unity
@@ -28,6 +31,7 @@ namespace HoloToolkit.Unity
 
             return Mathf.Abs(curve[curve.length - 1].time - curve[0].time);
         }
+<<<<<<< Updated upstream
 
         /// <summary>
         /// Determines whether or not a ray is valid.
@@ -219,5 +223,7 @@ namespace HoloToolkit.Unity
         }
 
         #endregion
+=======
+>>>>>>> Stashed changes
     }
 }

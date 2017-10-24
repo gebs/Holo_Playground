@@ -29,11 +29,17 @@ namespace HoloToolkit.Unity
             controlRect.x += EditorGUIUtility.labelWidth;
             controlRect.width = EditorGUIUtility.fieldWidth;
 
+<<<<<<< Updated upstream
             var toggleTooltip = new GUIContent
             {
                 text = string.Empty,
                 tooltip = "Enable/Disable color"
             };
+=======
+            GUIContent toggleTooltip = new GUIContent();
+            toggleTooltip.text = string.Empty;
+            toggleTooltip.tooltip = "Enable/Disable color";
+>>>>>>> Stashed changes
 
             //label indent of -1 is the secret sauce to make it aligned with right aligned toggles that come after labels
             //ShaderProperty handles begin and end animation checks
@@ -47,11 +53,17 @@ namespace HoloToolkit.Unity
                 //size it to take up the remainder of the space
                 controlRect.width = lineRect.width - controlRect.x;
 
+<<<<<<< Updated upstream
                 var tooltipOnly = new GUIContent
                 {
                     text = string.Empty,
                     tooltip = label.tooltip
                 };
+=======
+                GUIContent tooltipOnly = new GUIContent();
+                tooltipOnly.text = string.Empty;
+                tooltipOnly.tooltip = label.tooltip;
+>>>>>>> Stashed changes
 
                 EditorGUI.showMixedValue = colorProp.hasMixedValue;
                 EditorGUI.BeginChangeCheck();
@@ -95,13 +107,20 @@ namespace HoloToolkit.Unity
             MaterialProperty scaleOffsetProp
         )
         {
+<<<<<<< Updated upstream
             var rect = TextureWithToggleableColorSingleLine(matEditor, label, textureProp, colorToggleProp, colorProp);
 
             SetScaleOffsetKeywords(matEditor, textureProp, scaleOffsetProp);
+=======
+            var rect = CustomMaterialEditor.TextureWithToggleableColorSingleLine(matEditor, label, textureProp, colorToggleProp, colorProp);
+
+            CustomMaterialEditor.SetScaleOffsetKeywords(matEditor, textureProp, scaleOffsetProp);
+>>>>>>> Stashed changes
 
             return rect;
         }
 
+<<<<<<< Updated upstream
         public static void TextureScaleOffsetVector4Property(MaterialEditor matEditor, MaterialProperty scaleOffsetProp)
         {
             matEditor.BeginAnimatedCheck(
@@ -109,23 +128,39 @@ namespace HoloToolkit.Unity
                 GetControlRectForSingleLine(),
 #endif
                 scaleOffsetProp);
+=======
+        public static void TextureScaleOffsetVector4Property(MaterialEditor matEditor, GUIContent label, MaterialProperty scaleOffsetProp)
+        {
+            matEditor.BeginAnimatedCheck(scaleOffsetProp);
+>>>>>>> Stashed changes
 
             EditorGUI.showMixedValue = scaleOffsetProp.hasMixedValue;
             EditorGUI.BeginChangeCheck();
 
             Vector4 scaleOffsetVector = scaleOffsetProp.vectorValue;
 
+<<<<<<< Updated upstream
             var textureScale = new Vector2(scaleOffsetVector.x, scaleOffsetVector.y);
             textureScale = EditorGUILayout.Vector2Field(Styles.scale, textureScale);
 
             var textureOffset = new Vector2(scaleOffsetVector.z, scaleOffsetVector.w);
             textureOffset = EditorGUILayout.Vector2Field(Styles.offset, textureOffset);
+=======
+            Vector2 textureScale = new Vector2(scaleOffsetVector.x, scaleOffsetVector.y);
+            textureScale = EditorGUILayout.Vector2Field(Styles.scale, textureScale, new GUILayoutOption[0]);
+
+            Vector2 textureOffset = new Vector2(scaleOffsetVector.z, scaleOffsetVector.w);
+            textureOffset = EditorGUILayout.Vector2Field(Styles.offset, textureOffset, new GUILayoutOption[0]);
+>>>>>>> Stashed changes
 
             if (EditorGUI.EndChangeCheck())
             {
                 scaleOffsetProp.vectorValue = new Vector4(textureScale.x, textureScale.y, textureOffset.x, textureOffset.y);
             }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             EditorGUI.showMixedValue = false;
 
             matEditor.EndAnimatedCheck();
@@ -133,7 +168,11 @@ namespace HoloToolkit.Unity
 
         public static Rect GetControlRectForSingleLine()
         {
+<<<<<<< Updated upstream
             return EditorGUILayout.GetControlRect(true, 18f, EditorStyles.layerMaskField);
+=======
+            return EditorGUILayout.GetControlRect(true, 18f, EditorStyles.layerMaskField, new GUILayoutOption[0]);
+>>>>>>> Stashed changes
         }
 
         private static class Styles

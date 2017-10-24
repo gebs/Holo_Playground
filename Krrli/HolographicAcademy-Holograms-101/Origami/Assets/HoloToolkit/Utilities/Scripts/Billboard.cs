@@ -24,6 +24,7 @@ namespace HoloToolkit.Unity
         [Tooltip("Specifies the axis about which the object will rotate.")]
         public PivotAxis PivotAxis = PivotAxis.Free;
 
+<<<<<<< Updated upstream
         [Tooltip("Specifies the target we will orient to. If no Target is specified the main camera will be used.")]
         public Transform TargetTransform;
 
@@ -34,6 +35,10 @@ namespace HoloToolkit.Unity
                 TargetTransform = CameraCache.Main.transform;
             }
 
+=======
+        private void OnEnable()
+        {
+>>>>>>> Stashed changes
             Update();
         }
 
@@ -42,13 +47,21 @@ namespace HoloToolkit.Unity
         /// </summary>
         private void Update()
         {
+<<<<<<< Updated upstream
             if (TargetTransform == null)
+=======
+            if (!Camera.main)
+>>>>>>> Stashed changes
             {
                 return;
             }
 
             // Get a Vector that points from the target to the main camera.
+<<<<<<< Updated upstream
             Vector3 directionToTarget = TargetTransform.position - transform.position;
+=======
+            Vector3 directionToTarget = Camera.main.transform.position - transform.position;
+>>>>>>> Stashed changes
 
             // Adjust for the pivot axis.
             switch (PivotAxis)
@@ -73,4 +86,8 @@ namespace HoloToolkit.Unity
             transform.rotation = Quaternion.LookRotation(-directionToTarget);
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

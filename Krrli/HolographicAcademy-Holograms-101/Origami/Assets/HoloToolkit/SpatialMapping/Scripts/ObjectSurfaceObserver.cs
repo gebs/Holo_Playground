@@ -13,6 +13,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         [Tooltip("If greater than or equal to zero, surface objects will claim to be updated at this period. This is useful when working with libraries that respond to updates (such as the SpatialUnderstanding library). If negative, surfaces will not claim to be updated.")]
         public float SimulatedUpdatePeriodInSeconds = -1;
 
+<<<<<<< Updated upstream
         private void Start()
         {
 #if UNITY_2017_2_OR_NEWER
@@ -20,6 +21,13 @@ namespace HoloToolkit.Unity.SpatialMapping
 #else
             if (!UnityEngine.VR.VRDevice.isPresent && Application.isEditor)
 #endif
+=======
+        // Use this for initialization.
+        private void Start()
+        {
+#if UNITY_EDITOR
+            if (!UnityEngine.VR.VRDevice.isPresent)
+>>>>>>> Stashed changes
             {
                 // When in the Unity editor and not remoting, try loading saved meshes from a model.
                 Load(RoomModel);
@@ -29,6 +37,10 @@ namespace HoloToolkit.Unity.SpatialMapping
                     SpatialMappingManager.Instance.SetSpatialMappingSource(this);
                 }
             }
+<<<<<<< Updated upstream
+=======
+#endif
+>>>>>>> Stashed changes
         }
 
         /// <summary>

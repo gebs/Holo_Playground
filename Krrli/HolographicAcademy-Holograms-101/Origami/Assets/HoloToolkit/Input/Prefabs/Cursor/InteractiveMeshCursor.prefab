@@ -98,7 +98,11 @@ Transform:
   m_GameObject: {fileID: 1000013046499688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
+<<<<<<< Updated upstream
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+>>>>>>> Stashed changes
   m_Children:
   - {fileID: 4000010337883960}
   - {fileID: 4000013641020314}
@@ -163,7 +167,10 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+<<<<<<< Updated upstream
   m_SortingLayer: 0
+=======
+>>>>>>> Stashed changes
   m_SortingOrder: 0
 --- !u!23 &23000014103550452
 MeshRenderer:
@@ -196,7 +203,10 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+<<<<<<< Updated upstream
   m_SortingLayer: 0
+=======
+>>>>>>> Stashed changes
   m_SortingOrder: 0
 --- !u!33 &33000012338699338
 MeshFilter:
@@ -219,7 +229,11 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012327360030}
   m_Enabled: 1
+<<<<<<< Updated upstream
   serializedVersion: 8
+=======
+  serializedVersion: 7
+>>>>>>> Stashed changes
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.4
@@ -244,6 +258,7 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+<<<<<<< Updated upstream
   m_FalloffTable:
     m_Table[0]: 0
     m_Table[1]: 0
@@ -260,6 +275,8 @@ Light:
     m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
+=======
+>>>>>>> Stashed changes
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &114698458312288788
@@ -284,7 +301,10 @@ MonoBehaviour:
   PrimaryCursorVisual: {fileID: 0}
   Ring: {fileID: 1000013883439490}
   Dot: {fileID: 1000010809468922}
+<<<<<<< Updated upstream
   Light: {fileID: 1000012327360030}
+=======
+>>>>>>> Stashed changes
   DistanceScaleFactor: 0.3
   DefaultScale: 0.5
   DownScale: 0.4

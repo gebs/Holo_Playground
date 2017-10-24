@@ -9,7 +9,11 @@ namespace HoloToolkit.Unity
 {
     public static class RoomMeshExporter
     {
+<<<<<<< Updated upstream
         private const string ExportDirectoryKey = "_ExportDirectory";
+=======
+        private const string ExportDirectoryKey = "ExportDirectory";
+>>>>>>> Stashed changes
         private const string ExportDirectoryDefault = "MeshExport";
         private const string ExportDialogErrorTitle = "Export Error";
         private const string WavefrontFileExtension = ".obj";
@@ -18,7 +22,11 @@ namespace HoloToolkit.Unity
         {
             get
             {
+<<<<<<< Updated upstream
                 return EditorPrefsUtility.GetEditorPref(ExportDirectoryKey, ExportDirectoryDefault);
+=======
+                return EditorPrefs.GetString(ExportDirectoryKey, ExportDirectoryDefault);
+>>>>>>> Stashed changes
             }
             set
             {
@@ -27,7 +35,11 @@ namespace HoloToolkit.Unity
                     value = ExportDirectoryDefault;
                 }
 
+<<<<<<< Updated upstream
                 EditorPrefsUtility.SetEditorPref(ExportDirectoryKey, value);
+=======
+                EditorPrefs.SetString(ExportDirectoryKey, value);
+>>>>>>> Stashed changes
             }
         }
 
@@ -45,7 +57,11 @@ namespace HoloToolkit.Unity
             return true;
         }
 
+<<<<<<< Updated upstream
         [MenuItem("Mixed Reality Toolkit/Export/Export Room (.room) To Wavefront (.obj)...")]
+=======
+        [MenuItem("HoloToolkit/Export/Export Room (.room) To Wavefront (.obj)...")]
+>>>>>>> Stashed changes
         public static void ExportRoomToWavefront()
         {
             string selectedFile = EditorUtility.OpenFilePanelWithFilters("Select Room File", MeshSaver.MeshFolderName, new string[] { "Room", "room" });
@@ -78,7 +94,11 @@ namespace HoloToolkit.Unity
             System.Diagnostics.Process.Start(ExportDirectory);
         }
 
+<<<<<<< Updated upstream
         [MenuItem("Mixed Reality Toolkit/Export/Export Selection To Wavefront (.obj)")]
+=======
+        [MenuItem("HoloToolkit/Export/Export Selection To Wavefront (.obj)")]
+>>>>>>> Stashed changes
         public static void ExportSelectionToWavefront()
         {
             Transform[] selectedTransforms = Selection.transforms;

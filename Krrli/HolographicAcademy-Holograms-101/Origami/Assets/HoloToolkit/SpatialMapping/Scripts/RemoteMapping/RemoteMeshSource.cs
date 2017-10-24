@@ -3,7 +3,11 @@
 
 using UnityEngine;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
 using System.Collections.Generic;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
@@ -24,7 +28,11 @@ namespace HoloToolkit.Unity.SpatialMapping
         [Tooltip("The connection port on the machine to use.")]
         public int ConnectionPort = 11000;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
         /// <summary>
         /// Tracks the network connection to the remote machine we are sending meshes to.
         /// </summary>

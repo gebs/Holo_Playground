@@ -17,6 +17,7 @@ namespace HoloToolkit.Unity
         [Tooltip("How fast the object will move to the target position.")]
         public float MoveSpeed = 2.0f;
 
+<<<<<<< Updated upstream
         /// <summary>
         /// When moving, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.
         /// </summary>
@@ -38,11 +39,22 @@ namespace HoloToolkit.Unity
         [SerializeField]
         [Tooltip("Display a small green cube where the target position is.")]
         private bool debugDisplayTargetPosition;
+=======
+        [Tooltip("When moving, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.")]
+        public bool UseUnscaledTime = true;
+
+        [Tooltip("Display the sphere in red wireframe for debugging purposes.")]
+        public bool DebugDisplaySphere = false;
+
+        [Tooltip("Display a small green cube where the target position is.")]
+        public bool DebugDisplayTargetPosition = false;
+>>>>>>> Stashed changes
 
         private Vector3 targetPosition;
         private Vector3 optimalPosition;
         private float initialDistanceToCamera;
 
+<<<<<<< Updated upstream
         private void Start()
         {
             initialDistanceToCamera = Vector3.Distance(transform.position, CameraCache.Main.transform.position);
@@ -53,10 +65,23 @@ namespace HoloToolkit.Unity
             optimalPosition = CameraCache.Main.transform.position + CameraCache.Main.transform.forward * initialDistanceToCamera;
             Vector3 offsetDir = transform.position - optimalPosition;
 
+=======
+        void Start()
+        {
+            initialDistanceToCamera = Vector3.Distance(this.transform.position, Camera.main.transform.position);
+        }
+
+        void Update()
+        {
+            optimalPosition = Camera.main.transform.position + Camera.main.transform.forward * initialDistanceToCamera;
+
+            Vector3 offsetDir = this.transform.position - optimalPosition;
+>>>>>>> Stashed changes
             if (offsetDir.magnitude > SphereRadius)
             {
                 targetPosition = optimalPosition + offsetDir.normalized * SphereRadius;
 
+<<<<<<< Updated upstream
                 float deltaTime = useUnscaledTime
                     ? Time.unscaledDeltaTime
                     : Time.deltaTime;
@@ -71,22 +96,41 @@ namespace HoloToolkit.Unity
             {
                 hideOnStart = !hideOnStart;
                 gameObject.SetActive(false);
+=======
+                float deltaTime = UseUnscaledTime
+                    ? Time.unscaledDeltaTime
+                    : Time.deltaTime;
+
+                this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, MoveSpeed * deltaTime);
+>>>>>>> Stashed changes
             }
         }
 
         public void OnDrawGizmos()
         {
+<<<<<<< Updated upstream
             if (Application.isPlaying == false) { return; }
 
             Color oldColor = Gizmos.color;
 
             if (debugDisplaySphere)
+=======
+            if (Application.isPlaying == false) return;
+
+            Color oldColor = Gizmos.color;
+
+            if (DebugDisplaySphere)
+>>>>>>> Stashed changes
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(optimalPosition, SphereRadius);
             }
 
+<<<<<<< Updated upstream
             if (debugDisplayTargetPosition)
+=======
+            if (DebugDisplayTargetPosition)
+>>>>>>> Stashed changes
             {
                 Gizmos.color = Color.green;
                 Gizmos.DrawCube(targetPosition, new Vector3(0.1f, 0.1f, 0.1f));
@@ -95,4 +139,8 @@ namespace HoloToolkit.Unity
             Gizmos.color = oldColor;
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

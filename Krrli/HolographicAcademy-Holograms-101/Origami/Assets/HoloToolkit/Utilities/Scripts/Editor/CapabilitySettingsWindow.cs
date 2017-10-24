@@ -1,18 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+<<<<<<< Updated upstream
 using System;
+=======
+>>>>>>> Stashed changes
 using UnityEditor;
 using UnityEngine;
 
 namespace HoloToolkit.Unity
 {
     /// <summary>
+<<<<<<< Updated upstream
     /// Renders the UI and handles update logic for HoloToolkit/Configure/Apply Mixed Reality Capability Settings.
+=======
+    /// Renders the UI and handles update logic for HoloToolkit/Configure/Apply HoloLens Capability Settings.
+>>>>>>> Stashed changes
     /// </summary>
     public class CapabilitySettingsWindow : AutoConfigureWindow<PlayerSettings.WSACapability>
     {
         #region Internal Methods
+<<<<<<< Updated upstream
 
         private void ApplySetting(PlayerSettings.WSACapability setting)
         {
@@ -64,6 +72,10 @@ namespace HoloToolkit.Unity
                     throw new ArgumentOutOfRangeException("setting", setting, null);
             }
 
+=======
+        private void ApplySetting(PlayerSettings.WSACapability setting)
+        {
+>>>>>>> Stashed changes
             PlayerSettings.WSA.SetCapability(setting, Values[setting]);
         }
 
@@ -71,6 +83,7 @@ namespace HoloToolkit.Unity
         {
             Values[setting] = PlayerSettings.WSA.GetCapability(setting);
         }
+<<<<<<< Updated upstream
 
         #endregion // Internal Methods
 
@@ -79,11 +92,23 @@ namespace HoloToolkit.Unity
         protected override void ApplySettings()
         {
             Close();
+=======
+        #endregion // Internal Methods
+
+        #region Overrides / Event Handlers
+        protected override void ApplySettings()
+        {
+            ApplySetting(PlayerSettings.WSACapability.Microphone);
+            ApplySetting(PlayerSettings.WSACapability.SpatialPerception);
+            ApplySetting(PlayerSettings.WSACapability.WebCam);
+            ApplySetting(PlayerSettings.WSACapability.InternetClient);
+>>>>>>> Stashed changes
         }
 
         protected override void LoadSettings()
         {
             LoadSetting(PlayerSettings.WSACapability.Microphone);
+<<<<<<< Updated upstream
             LoadSetting(PlayerSettings.WSACapability.WebCam);
             LoadSetting(PlayerSettings.WSACapability.SpatialPerception);
             LoadSetting(PlayerSettings.WSACapability.InternetClient);
@@ -101,11 +126,17 @@ namespace HoloToolkit.Unity
             ApplySetting(PlayerSettings.WSACapability.PrivateNetworkClientServer);
 
             LoadSettings();
+=======
+            LoadSetting(PlayerSettings.WSACapability.SpatialPerception);
+            LoadSetting(PlayerSettings.WSACapability.WebCam);
+            LoadSetting(PlayerSettings.WSACapability.InternetClient);
+>>>>>>> Stashed changes
         }
 
         protected override void LoadStrings()
         {
             Names[PlayerSettings.WSACapability.Microphone] = "Microphone";
+<<<<<<< Updated upstream
             Descriptions[PlayerSettings.WSACapability.Microphone] = "Required for access to the Microphone. This includes behaviors like DictationRecognizer, " +
                                                                     "GrammarRecognizer, and KeywordRecognizer. This capability is NOT required for the 'Select' keyword.\n\n" +
                                                                     "Recommendation: Only enable if your application needs access to the microphone beyond the 'Select' keyword. " +
@@ -145,6 +176,18 @@ namespace HoloToolkit.Unity
                                                                                     "communicate across the local area network (LAN), and for apps that share data across a variety " +
                                                                                     "of local devices.\n\nRequired when connecting the Unity Profiler to your app on the HoloLens" +
                                                                                     "\n\nNote: On Windows, this capability does not provide access to the Internet.";
+=======
+            Descriptions[PlayerSettings.WSACapability.Microphone] = "Required for access to the HoloLens microphone. This includes behaviors like DictationRecognizer, GrammarRecognizer, and KeywordRecognizer. This capability is NOT required for the 'Select' keyword.\n\nRecommendation: Only enable if your application needs access to the microphone beyond the 'Select' keyword.The microphone is considered a privacy sensitive resource.";
+
+            Names[PlayerSettings.WSACapability.SpatialPerception] = "Spatial Perception";
+            Descriptions[PlayerSettings.WSACapability.SpatialPerception] = "Required for access to the HoloLens world mapping capabilities.These include behaviors like SurfaceObserver, SpatialMappingManager and SpatialAnchor.\n\nRecommendation: Enabled, unless your application doesn't use spatial mapping or spatial collisions in any way.";
+
+            Names[PlayerSettings.WSACapability.WebCam] = "Webcam";
+            Descriptions[PlayerSettings.WSACapability.WebCam] = "Required for access to the HoloLens RGB camera (also known as the locatable camera). This includes APIs like PhotoCapture and VideoCapture. This capability is NOT required for mixed reality streaming or for capturing photos or videos using the start menu.\n\nRecommendation: Only enable if your application needs to programmatically capture photos or videos from the RGB camera.The RGB camera is considered a privacy sensitive resource.";
+
+            Names[PlayerSettings.WSACapability.InternetClient] = "Internet Client";
+            Descriptions[PlayerSettings.WSACapability.InternetClient] = "Required if your application needs to access the Internet.\n\nRecommendation: Leave unchecked unless your application uses online services.";
+>>>>>>> Stashed changes
         }
 
         protected override void OnEnable()
@@ -153,6 +196,7 @@ namespace HoloToolkit.Unity
             base.OnEnable();
 
             // Set size
+<<<<<<< Updated upstream
             minSize = new Vector2(350, 350);
             maxSize = minSize;
         }
@@ -160,3 +204,11 @@ namespace HoloToolkit.Unity
         #endregion // Overrides / Event Handlers
     }
 }
+=======
+            minSize = new Vector2(350, 255);
+            maxSize = minSize;
+        }
+        #endregion // Overrides / Event Handlers
+    }
+}
+>>>>>>> Stashed changes

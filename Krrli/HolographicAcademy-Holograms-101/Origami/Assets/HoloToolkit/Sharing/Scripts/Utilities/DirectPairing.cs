@@ -45,7 +45,11 @@ namespace HoloToolkit.Sharing.Utilities
             pairingAdapter.FailureEvent += OnPairingConnectionFailed;
 
             // Register to listen for disconnections, so we can reconnect automatically
+<<<<<<< Updated upstream
             if (SharingStage.IsInitialized)
+=======
+            if (SharingStage.Instance != null)
+>>>>>>> Stashed changes
             {
                 sharingMgr = SharingStage.Instance.Manager;
 
@@ -67,7 +71,11 @@ namespace HoloToolkit.Sharing.Utilities
             // SharingStage's OnDestroy() might execute first in the script order. Therefore we should check if
             // SharingStage.Instance still exists. Without the instance check, the execution of GetPairingManager
             // on a disposed sharing manager will crash the Unity Editor and application.
+<<<<<<< Updated upstream
             if (SharingStage.IsInitialized && sharingMgr != null)
+=======
+            if (SharingStage.Instance != null && sharingMgr != null)
+>>>>>>> Stashed changes
             {
                 PairingManager pairingMgr = sharingMgr.GetPairingManager();
                 pairingMgr.CancelPairing(); // Safe to call, even if no pairing is in progress.  Will not cause a disconnect

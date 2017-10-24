@@ -1,8 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+<<<<<<< Updated upstream
 using System;
 using System.Collections.Generic;
+=======
+>>>>>>> Stashed changes
 using System.Text;
 using UnityEngine;
 
@@ -37,6 +40,7 @@ namespace HoloToolkit.Unity
             }
             stringBuilder.Append(transform.name);
         }
+<<<<<<< Updated upstream
 
         /// <summary>
         /// Enumerates all children in the hierarchy starting at the root object.
@@ -115,5 +119,7 @@ namespace HoloToolkit.Unity
         {
             return transform1.IsChildOf(transform2) || transform2.IsChildOf(transform1);
         }
+=======
+>>>>>>> Stashed changes
     }
 }

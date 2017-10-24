@@ -1,7 +1,11 @@
+<<<<<<< Updated upstream
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 Shader "MixedRealityToolkit/EditorHands"
+=======
+﻿Shader "HoloToolkit/EditorHands"
+>>>>>>> Stashed changes
 {
     Properties
     {
@@ -92,5 +96,9 @@ Shader "MixedRealityToolkit/EditorHands"
         ENDCG
         }
     }
+<<<<<<< Updated upstream
     CustomEditor "HoloToolkit.Unity.EditorHandsMaterialInspector"
+=======
+    CustomEditor "EditorHandsMaterialInspector"
+>>>>>>> Stashed changes
 }

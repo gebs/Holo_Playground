@@ -14,6 +14,7 @@ namespace HoloToolkit.Unity
     public class AudioContainer
     {
         [Tooltip("The type of the audio container.")]
+<<<<<<< Updated upstream
         public AudioContainerType ContainerType = AudioContainerType.Random;
 
         public bool Looping = false;
@@ -21,5 +22,14 @@ namespace HoloToolkit.Unity
         public UAudioClip[] Sounds = null;
         public float CrossfadeTime = 0f;
         public int CurrentClip = 0;
+=======
+        public AudioContainerType containerType = AudioContainerType.Random;
+
+        public bool looping = false;
+        public float loopTime = 0;
+        public UAudioClip[] sounds = null;
+        public float crossfadeTime = 0f;
+        public int currentClip = 0;
+>>>>>>> Stashed changes
     }
 }

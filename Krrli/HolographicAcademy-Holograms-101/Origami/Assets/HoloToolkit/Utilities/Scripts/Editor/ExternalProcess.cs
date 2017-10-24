@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+<<<<<<< Updated upstream
+=======
+#if UNITY_EDITOR
+>>>>>>> Stashed changes
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -30,10 +34,17 @@ namespace HoloToolkit.Unity
 
         private IntPtr mHandle;
 
+<<<<<<< Updated upstream
         /// <summary>
         /// First some static utility functions, used by some other code as well.
         /// They are related to "external processes" so they appear here.
         /// </summary>
+=======
+        /*
+        * First some static utility functions, used by some other code as well.
+        * They are related to "external processes" so they appear here.
+        */
+>>>>>>> Stashed changes
         private static string sAppDataPath;
 
         public static void Launch(string appName)
@@ -135,11 +146,17 @@ namespace HoloToolkit.Unity
             return relativePath.OriginalString;
         }
 
+<<<<<<< Updated upstream
         /// <summary>
         /// The actual ExternalProcess class.
         /// </summary>
         /// <param name="appName"></param>
         /// <returns></returns>
+=======
+        /*
+        * The actual ExternalProcess class.
+        */
+>>>>>>> Stashed changes
         public static ExternalProcess CreateExternalProcess(string appName)
         {
             return CreateExternalProcess(appName, null);
@@ -292,3 +309,7 @@ namespace HoloToolkit.Unity
         }
     }
 }
+<<<<<<< Updated upstream
+=======
+#endif
+>>>>>>> Stashed changes

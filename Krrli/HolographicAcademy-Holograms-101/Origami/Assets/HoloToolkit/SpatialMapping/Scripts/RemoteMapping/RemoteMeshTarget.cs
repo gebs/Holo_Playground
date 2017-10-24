@@ -4,7 +4,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+<<<<<<< Updated upstream
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
+=======
+#if UNITY_EDITOR || UNITY_STANDALONE
+>>>>>>> Stashed changes
 using System.Net;
 using System.Net.Sockets;
 #endif
@@ -25,7 +29,11 @@ namespace HoloToolkit.Unity.SpatialMapping
         [Tooltip("The connection port on the machine to use.")]
         public int ConnectionPort = 11000;
 
+<<<<<<< Updated upstream
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
+=======
+#if UNITY_EDITOR || UNITY_STANDALONE
+>>>>>>> Stashed changes
         /// <summary>
         /// Listens for network connections over TCP.
         /// </summary> 
@@ -89,12 +97,15 @@ namespace HoloToolkit.Unity.SpatialMapping
                     // Pass the data to the mesh serializer. 
                     List<Mesh> meshes = new List<Mesh>(SimpleMeshSerializer.Deserialize(dataBuffer));
 
+<<<<<<< Updated upstream
                     if (meshes.Count > 0)
                     {
                         // Use the network-based mapping source to receive meshes in the Unity editor.
                         SpatialMappingManager.Instance.SetSpatialMappingSource(this);
                     }
 
+=======
+>>>>>>> Stashed changes
                     // For each mesh, create a GameObject to render it.
                     for (int index = 0; index < meshes.Count; index++)
                     {

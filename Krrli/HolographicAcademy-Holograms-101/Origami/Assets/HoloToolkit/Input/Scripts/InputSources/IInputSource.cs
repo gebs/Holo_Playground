@@ -1,11 +1,29 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+<<<<<<< Updated upstream
+=======
+using System;
+>>>>>>> Stashed changes
 using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
     /// <summary>
+<<<<<<< Updated upstream
+=======
+    /// Flags used to indicate which input information is supported by an input source.
+    /// </summary>
+    [Flags]
+    public enum SupportedInputInfo
+    {
+        None = 0,
+        Position = 1,
+        Orientation = 2,
+    }
+
+    /// <summary>
+>>>>>>> Stashed changes
     /// Interface for an input source.
     /// An input source can be anything that a user can use to interact with a device.
     /// </summary>
@@ -23,6 +41,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <param name="inputInfo">Input info type that we want to get information about.</param>
         bool SupportsInputInfo(uint sourceId, SupportedInputInfo inputInfo);
 
+<<<<<<< Updated upstream
         bool TryGetSourceKind(uint sourceId, out InteractionSourceInfo sourceKind);
 
         /// <summary>
@@ -75,5 +94,24 @@ namespace HoloToolkit.Unity.InputModule
         bool TryGetSelect(uint sourceId, out bool isPressed, out double pressedValue);
         bool TryGetGrasp(uint sourceId, out bool isPressed);
         bool TryGetMenu(uint sourceId, out bool isPressed);
+=======
+        /// <summary>
+        /// Returns the position of the input source, if available.
+        /// Not all input sources have positional information.
+        /// </summary>
+        /// <param name="sourceId">ID of the source for which the position should be retrieved.</param>
+        /// <param name="position">Out parameter filled with the position if available, otherwise the zero vector.</param>
+        /// <returns>True if a position was retrieved, false if not.</returns>
+        bool TryGetPosition(uint sourceId, out Vector3 position);
+
+        /// <summary>
+        /// Returns the orientation of the input source, if available.
+        /// Not all input sources have orientation information.
+        /// </summary>
+        /// <param name="sourceId">ID of the source for which the position should be retrieved.</param>
+        /// <param name="orientation">Out parameter filled with the orientation if available, otherwise the zero vector.</param>
+        /// <returns>True if an orientation was retrieved, false if not.</returns>
+        bool TryGetOrientation(uint sourceId, out Quaternion orientation);
+>>>>>>> Stashed changes
     }
 }

@@ -10,7 +10,11 @@ namespace HoloToolkit.Unity
     {
         private void OnEnable()
         {
+<<<<<<< Updated upstream
             this.MyTarget = (UAudioManager)target;
+=======
+            this.myTarget = (UAudioManager)target;
+>>>>>>> Stashed changes
             SetUpEditor();
         }
 

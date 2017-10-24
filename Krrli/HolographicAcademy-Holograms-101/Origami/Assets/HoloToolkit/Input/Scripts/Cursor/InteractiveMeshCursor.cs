@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
+<<<<<<< Updated upstream
     /// <summary>
     /// A cursor that looks and acts more like the shell cursor.
     /// A two part cursor with visual feedback for all cursor states
@@ -37,6 +38,20 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// internal state and element management
         /// </summary>
+=======
+    public class InteractiveMeshCursor : Cursor
+    {
+        public GameObject Ring;
+        public GameObject Dot;
+        public float DistanceScaleFactor = 0.3f;
+        public float DefaultScale = 0.75f;
+        public float DownScale = 0.5f;
+        public float UpScale = 1;
+        public float ScaleTime = 0.5f;
+
+        private bool mRingVisible = false;
+        private bool mScaleDown = false;
+>>>>>>> Stashed changes
         private float mTimer = 0;
 
         private bool mHasHover = false;
@@ -44,7 +59,10 @@ namespace HoloToolkit.Unity.InputModule
         private bool mIsDown = false;
         private Vector3 mBaseScale = new Vector3(1, 1, 1);
         private Vector3 mTargetScale;
+<<<<<<< Updated upstream
         private bool mIsVisible = true;
+=======
+>>>>>>> Stashed changes
 
         private Vector3 mAwakeScale;
 
@@ -53,15 +71,21 @@ namespace HoloToolkit.Unity.InputModule
             mAwakeScale = transform.localScale;
         }
 
+<<<<<<< Updated upstream
         /// <summary>
         /// Decide which element (ring or dot) should be visible and at what scale
         /// </summary>
         /// <param name="state"></param>
+=======
+>>>>>>> Stashed changes
         public override void OnCursorStateChange(CursorStateEnum state)
         {
             base.OnCursorStateChange(state);
 
+<<<<<<< Updated upstream
             // the cursor state has changed, reset the animation timer
+=======
+>>>>>>> Stashed changes
             if (mHasHand != this.IsHandVisible || mIsDown != this.IsInputSourceDown || mHasHover != (this.TargetedObject != null))
             {
                 mTimer = 0;
@@ -101,6 +125,7 @@ namespace HoloToolkit.Unity.InputModule
                 default:
                     break;
             }
+<<<<<<< Updated upstream
 
             if (!mIsVisible)
             {
@@ -120,11 +145,22 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// scale the cursor elements
         /// </summary>
+=======
+            
+            Ring.SetActive(showRing);
+            Dot.SetActive(!showRing);
+            
+        }
+
+>>>>>>> Stashed changes
         protected override void UpdateCursorTransform()
         {
             base.UpdateCursorTransform();
 
+<<<<<<< Updated upstream
             // animate scale of ring and dot
+=======
+>>>>>>> Stashed changes
             if (mTimer < ScaleTime)
             {
                 mTimer += Time.deltaTime;
@@ -137,6 +173,7 @@ namespace HoloToolkit.Unity.InputModule
                 Dot.transform.localScale = Vector3.Lerp(mBaseScale * DefaultScale, mTargetScale, mTimer / ScaleTime);
             }
 
+<<<<<<< Updated upstream
             // handle scale of main cursor go
             float distance = Vector3.Distance(GazeManager.Instance.GazeOrigin, transform.position);
             float smoothscaling = 1 - DefaultCursorDistance * DistanceScaleFactor;
@@ -180,6 +217,12 @@ namespace HoloToolkit.Unity.InputModule
             {
                 Light.SetActive(visible);
             }
+=======
+            float distance = Vector3.Distance(GazeManager.Instance.GazeOrigin, transform.position);
+            float smoothscaling = 1 - DefaultCursorDistance * DistanceScaleFactor;
+            transform.localScale = mAwakeScale * (distance * DistanceScaleFactor + smoothscaling);
+
+>>>>>>> Stashed changes
         }
     }
 }

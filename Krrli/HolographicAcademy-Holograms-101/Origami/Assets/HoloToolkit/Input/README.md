@@ -1,4 +1,5 @@
 ## [Input]()
+<<<<<<< Updated upstream
 
 ## Table of Contents
 
@@ -20,6 +21,17 @@ This contains a fully-featured **input system**, which allows you to handle vari
 ![alt text](/External/ReadMeImages/CursorSystemDiagram.PNG)
 
 ### Input Module Design
+=======
+Input System Diagrams:
+![alt text](/External/ReadMeImages/InputSystemDiagram.png)
+![alt text](/External/ReadMeImages/CursorSystemDiagram.PNG)
+
+## Scripts that leverage HoloLens input features namely Gaze, Gesture and Voice.
+
+This contains a fully-featured **input module**, which allows you to handle various types of input and send them to any game object being currently gazed at, or any fallback object. It also includes a **cursor** similar to the HoloLens shell cursor that fully leverages the Unity's animation system.
+
+### [Input Module Design](InputModuleDesign)
+>>>>>>> Stashed changes
 The input module is designed to be extensible: it could support various input mechanisms and various types of gazers.
 
 Each input source (hands, gestures, others) implement a **IInputSource** interface. The interface defines various events that the input sources can trigger. The input sources register themselves with the InputManager, whose role it is to forward input to the appropriate game objects. Input sources can be dynamically enabled / disabled as necessary, and new input sources can be created to support different input devices.
@@ -31,18 +43,28 @@ Game objects that want to consume input events can implement one or many **input
 - **IInputHandler** for source up and down. The source can be a hand that tapped, a clicker that was pressed, etc.
 - **IInputClickHandler** for source clicked. The source can be a hand that tapped, a clicker that was pressed, etc.
 - **IManipulationHandler** for the Windows manipulation gesture.
+<<<<<<< Updated upstream
 - **INavigationHandler** for the Windows navigation gesture.
 - **ISourceStateHandler** for the source detected and source lost events.
 - **ISpeechHandler** for voice commands.
 - **IDictationHandler** for speech to text dictation.
 - **IGamePadHandler** for generic gamepad events.
 - **IXboxControllerHandler** for Xbox One Controller events.
+=======
+- **INavigationnHandler** for the Windows navigation gesture.
+- **ISourceStateHandler** for the source detected and source lost events.
+- **ISpeechHandler** for voice commands.
+>>>>>>> Stashed changes
 
 The **input manager** listens to the various events coming from the input sources, and also takes into account the gaze. Currently, that gaze is always coming from the GazeManager class, but this could be extended to support multiple gaze sources if the need arises.
 
 By default, input events are sent to the currently focused game object, if that object implements the appropriate interface. Modals input handlers can also be added to the input manager: these modal handlers will take priority over the currently focused object Fallback handlers can also be defined, so that the application can react to global inputs that aren't targeting a specific element. Any event sent by the input manager always bubbles up from the object to its ancestors. 
 
+<<<<<<< Updated upstream
 In recap, the **input manager** forwards the various input sources events to the appropriate game object, using the following order:
+=======
+In recap, the input manager forwards the various input sources events to the appropriate game object, using the following order:
+>>>>>>> Stashed changes
 
 1. The registered modal input handlers, in LIFO (Last-In First-Out) order of registration
 2. The currently focused object
@@ -74,6 +96,7 @@ Unity camera that has been customized for Holographic development.
 #### InputManager.prefab
 Input system that manages gaze and various input sources currently supported by HoloLens, such as hands and gestures.
 
+<<<<<<< Updated upstream
 This also includes a fake input source that allows you to simulate input when in the editor. By default, this can be done by holding Shift (left input source) or Space (right input source), moving the mouse to move the source and using the left mouse button to tap.
 
 #### MixedRealityCamera.prefab
@@ -98,10 +121,14 @@ In order to prevent the MainCamera position from being overwritten in the next u
 #### MixedRealityCameraParentWithControllers.prefab
 This prefab is used when you want to enable teleporting on mixed reality enabled occluded devices, as well as motion controller visualization.
 In order to prevent the MainCamera position from being overwritten in the next update we use a parent GameObject.
+=======
+This also includes a fake input source that allows you to simulate hand input when in the editor. By default, this can be done by holding Shift (left hand) or Space (right hand), moving the mouse to move the hand and use the left mouse button to tap.
+>>>>>>> Stashed changes
 
 ### [Scripts](Scripts)
 Scripts related to the input features.
 
+<<<<<<< Updated upstream
 ##### ControllerVisualizer.cs
 Use this to visualize a 6DoF controller in your application. Add this script to a GameObject as a child of the MainCamera, or use the MixedRealityCameraParentWithControllers prefab. Either specify a shader to use for the [glTF](https://www.khronos.org/gltf) model or add GameObject overrides to represent the controllers.
 
@@ -123,6 +150,9 @@ Add this to a GameObject to register it as a global listener on the InputManager
 
 #### Cursor
 
+=======
+#### Cursor
+>>>>>>> Stashed changes
 ##### AnimatedCursor.cs
 Animated cursor is a cursor driven using an animator to inject state information and animate accordingly.
 
@@ -150,6 +180,7 @@ Cursor whose states are represented by one or many game objects.
 ##### SpriteCursor.cs
 Cursor whose states are represented by colored sprites.
 
+<<<<<<< Updated upstream
 #### Focus
 With Windows Mixed Reality enabled devices and motion controllers, you can have different ways of representing the user's attention aka pointing.
 You can use the conventional **'gaze and commit'** style interactions.
@@ -197,6 +228,11 @@ Controller axis and button types.
 
 ##### BaseRayStabilizer.cs
 A base abstract class for a stabilizer that takes as input position and rotation, and performs operations on them to stabilize or smooth that data.
+=======
+#### Gaze
+##### BaseRayStabilizer.cs
+A base abstract class for a stabilizer that takes as input position and orientation, and performs operations on them to stabilize or smooth that data.
+>>>>>>> Stashed changes
 
 ##### GazeManager.cs
 Singleton component in charge of managing the gaze vector. This is where you can define which layers are considered when gazing at objects. Optionally, the gaze manager can reference a ray stabilizer that will be used to stabilize the gaze of the user.
@@ -211,6 +247,7 @@ Stabilize the user's gaze to account for head jitter.
 
 - **StoredStabilitySamples** Number of samples that you want to iterate on.  A larger number will be more stable.
 
+<<<<<<< Updated upstream
 ##### MixedRealityTeleport.cs
 This script teleports the user to the location being gazed at when Y was pressed on a Gamepad.
 You must have an Xbox gamepad attached to use this script. It also works in the Unity editor.
@@ -290,6 +327,23 @@ Interface that a game object can implement to react to taps / clicks.
 
 ##### IInputHandler.cs
 Interface that a game object can implement to react to an input button being pressed or released.
+=======
+#### InputEvents
+##### BaseInputEventData.cs
+Base class for all input event data. An input event data is what is sent as a parameter to all input events.
+
+##### HoldEventData.cs
+Event data for an event coming from the hold gesture.
+
+##### IFocusable.cs
+Interface that a game object can implement to react to focus enter/exit.
+
+##### IHoldHandler.cs
+Interface that a game object can implement to react to hold gestures.
+
+##### IInputHandler.cs
+Interface that a game object can implement to react to simple pointer-like inputs.
+>>>>>>> Stashed changes
 
 ##### IManipulationHandler.cs
 Interface that a game object can implement to react to manipulation gestures.
@@ -297,6 +351,7 @@ Interface that a game object can implement to react to manipulation gestures.
 ##### INavigationHandler.cs
 Interface that a game object can implement to react to navigation gestures.
 
+<<<<<<< Updated upstream
 ##### IPointerSpecificFocusable.cs
 Interface that a game object can implement to react to a specific pointer's focus enter/exit.
 
@@ -316,12 +371,29 @@ Interface that a game object can implement to react to a keyword being recognize
 
 ##### IXboxControllerHandler.cs
 Interface that a game object can implement to react to Xbox Controller events.
+=======
+##### ISourceStateHandler.cs
+Interface that a game object can implement to react to source state changes, such as when an input source is detected or lost.
+
+##### InputEventData.cs
+Event data for an event that represents an input interaction such as a tap / click.
+
+##### ManipulationEventData.cs
+Event data for an event coming from the manipulation gesture.
+
+##### NavigationEventData.cs
+Event data for an event coming from the navigation gesture.
+
+##### SourceStateEventData.cs
+Event data for an event that represents an input source being detected or lost.
+>>>>>>> Stashed changes
 
 #### InputSources
 
 ##### BaseInputSource.cs
 Abstract base class for an input source that implements IInputSource. Defines the various abstract functions that any input source needs to implement, and provides some default implementations.
 
+<<<<<<< Updated upstream
 ##### DictationInputManager.cs
 Singleton class that implements  the DictationRecognizer to convert the user's speech to text. The DictationRecognizer exposes dictation functionality and supports registering and listening for hypothesis and phrase completed events.
 
@@ -338,6 +410,10 @@ Input source for in-Editor input source information, which can be used to simula
 
 ##### GamePadInputSource.cs
 Base class that all gamepad input sources should inherit from.
+=======
+##### EditorHandsInput.cs
+Input source for fake hands information, which can be used to simulate hands input in the Unity editor.
+>>>>>>> Stashed changes
 
 ##### GesturesInput.cs
 Input source for gestures information from the WSA APIs, which gives access to various system supported gestures.
@@ -345,6 +421,7 @@ Input source for gestures information from the WSA APIs, which gives access to v
 ##### IInputSource.cs
 Interface for an input source. An input source is any input mechanism that can be used as the source of user interactions.
 
+<<<<<<< Updated upstream
 ##### SpeechInputSource.cs
 Allows you to specify keywords and keyboard shortcuts in the Unity Inspector, instead of registering them explicitly in code. Keywords are handled by scripts that implement ISpeechHandler.cs.  You can utilize keywords with the SpeechInputHandler component by assigning game objects and specifying a Unity Event trigger.
 
@@ -391,6 +468,28 @@ Used to register the GameObject on the InputManager as a global listener.
 
 ##### TriggerButton.cs
 Very simple class that implements basic logic for a trigger button.
+=======
+##### RawInteractionSourcesInput.cs
+Input source for raw interactions sources information, which gives finer details about current source state and position than the standard GestureRecognizer.
+
+#### Interactions Scripts
+##### HandDraggable.cs
+Allows dragging an object in space with your hand on HoloLens. Just attach the script to a game object to make it movable.
+
+#### Microphone
+##### MicStream.cs
+Lets you access beam-formed microphone streams from the HoloLens to optimize voice and/or room captures, which is impossible to do with Unity's Microphone object. Takes the data and inserts it into Unity's AudioSource object for easy handling. Also lets you record indeterminate-length audio files from the Microphone to your device's Music Library, also using beam-forming.
+
+Check out Assets/HoloToolkit/Input/Tests/Scripts/MicStreamDemo.cs for an example of implementing these features, which is used in the demo scene at Assets/HoloToolkit/Input/Tests/MicrophoneStream.unity.
+
+**IMPORTANT**: Please make sure to add the Microphone and Music Library capabilities in your app, in Unity under  
+Edit -> Project Settings -> Player -> Settings for Windows Store -> Publishing Settings -> Capabilities  
+or in your Visual Studio Package.appxmanifest capabilities.
+
+**_KeywordsAndResponses_** Set the size as the number of keywords you'd like to listen for, then specify the keywords and method responses to complete the array.
+
+**RecognizerStart** Set this to determine whether the keyword recognizer will start immediately or if it should wait for your code to tell it to start.
+>>>>>>> Stashed changes
 
 #### Voice
 
@@ -398,6 +497,7 @@ Very simple class that implements basic logic for a trigger button.
 Edit -> Project Settings -> Player -> Settings for Windows Store -> Publishing Settings -> Capabilities  
 or in your Visual Studio Package.appxmanifest capabilities.
 
+<<<<<<< Updated upstream
 ##### KeywordAndKeyCode.cs
 Struct that facilitates the storage of keyword and keycode pairs.
 
@@ -410,6 +510,26 @@ Used to assign a Unity Event to a keyword stored in the SpeechInputSource compon
 
 ##### TriggerButton.cs
 Very simple class that implements basic logic for a trigger button.
+=======
+##### KeywordManager.cs
+Allows you to specify keywords and methods in the Unity Inspector, instead of registering them explicitly in code.  
+
+**_KeywordsAndResponses_** Set the size as the number of keywords you'd like to listen for, then specify the keywords and method responses to complete the array.
+
+**RecognizerStart** Set this to determine whether the keyword recognizer will start immediately or if it should wait for your code to tell it to start.
+
+##### SpeechInputSource.cs
+Allows you to specify keywords and keyboard shortcuts in the Unity Inspector, instead of registering them explicitly in code. Keywords are handled by scripts that implement ISpeechHandler.cs.
+
+Check out Assets/HoloToolkit/Input/Tests/Scripts/SphereKeywords.cs and Assets/HoloToolkit/Input/Tests/Scripts/SphereGlobalKeywords.cs for an example of implementing these features, which is used in the demo scene at Assets/HoloToolkit/Input/Tests/SpeechInputSource.unity.
+
+**_KeywordsAndKeys_** Set the size as the number of keywords you'd like to listen for, then specify the keywords to complete the array.
+
+**RecognizerStart** Set this to determine whether the keyword recognizer will start immediately or if it should wait for your code to tell it to start.
+
+##### ISpeechHandler.cs
+Interface that a game object can implement to react to speech keywords.
+>>>>>>> Stashed changes
 
 ### [Test Prefabs](https://github.com/Microsoft/HoloToolkit-Unity/tree/master/Assets/HoloToolkit-Tests/Input/Prefabs)
 
@@ -424,15 +544,21 @@ Keyword manager pre-wired to send messages to object being currently selected vi
 You can simply drop this into your scene and be able to send arbitrary messages to currently selected object.
 
 ### [Test Scripts](https://github.com/Microsoft/HoloToolkit-Unity/tree/master/Assets/HoloToolkit-Tests/Input/Scripts)
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 #### FocusedObjectMessageSender.cs
 Sends Unity message to currently focused object.
 FocusedObjectMessageSender.SendMessageToFocusedObject needs to be registered as a response in KeywordManager
 to enable arbitrary messages to be sent to currently focused object.
 
+<<<<<<< Updated upstream
 #### MicStream.cs
 Lets you access beam-formed microphone streams from the HoloLens to optimize voice and/or room captures, which is impossible to do with Unity's Microphone object. Takes the data and inserts it into Unity's AudioSource object for easy handling. Also lets you record indeterminate-length audio files from the Microphone to your device's Music Library, also using beam-forming.
 
+=======
+>>>>>>> Stashed changes
 #### SelectedObjectMessageSender.cs
 Sends Unity message to currently selected object.
 SelectedObjectMessageSender.SendMessageToSelectedObject needs to be registered as a response in KeywordManager
@@ -454,10 +580,13 @@ It highlights the object being gazed at.
 This class implements IInputClickHandler to handle the tap gesture.
 It increases the scale of the object when tapped.
 
+<<<<<<< Updated upstream
 #### NavigationRotateResponder.cs
 This class implements INavigationHandler to handle the navigation gesture.
 It rotates the object left or right based on X movement.
 
+=======
+>>>>>>> Stashed changes
 ### [Tests](https://github.com/Microsoft/HoloToolkit-Unity/tree/master/Assets/HoloToolkit-Tests/Input/Scenes)
 Tests related to the input features. To use the scene:
 
@@ -484,6 +613,7 @@ Gazing on an object and saying "Make Smaller" and "Make Bigger" will adjust obje
 Test scene shows you in a simple way, how to respond to user's gaze using the Input module.
 It also shows you how to respond to the user's tap gesture.
 
+<<<<<<< Updated upstream
 In this scene, under the InputManager prefab > GesturesInput, the script GamepadInput.cs helps map the Xbox gamepad buttons to gestures.
 Press A to air tap.
 
@@ -504,6 +634,8 @@ Quad:
 Gaze at the quad and press Y to teleport to that location.
 Press B to return to the original location.
 
+=======
+>>>>>>> Stashed changes
 #### KeywordManager.unity
 Shows how to use the KeywordManager.cs script to add keywords to your scene.
 
@@ -522,9 +654,12 @@ This scene shows how to manually control the camera.  The script is on the main 
 #### MicrophoneStream.unity
 Example usage of MicStream.cs to select and record beam-formed audio from the hololens. In editor, the script lets you choose if you want to beam-form capture on voice or on the room. When running, press 'Q' to start the stream you selected, 'W' will stop the stream, 'A' starts recording a wav file, and 'S' stops the recording, saves it to your Music library, and prints the full path of the audio clip.
 
+<<<<<<< Updated upstream
 #### MotionControllerTest.unity
 This scene shows how to render motion controllers in your app. It also contains a debug panel to help diagnose the state of a connected controller.
 
+=======
+>>>>>>> Stashed changes
 #### SelectedObjectKeywords.unity
 Example on how to send keyword messages to currently selected dynamically instantiated object.
 Gazing on an object and saying "Select Object" will persistently select that object for interaction with voice commands,
@@ -549,6 +684,10 @@ When you start the scene, your keywords will automatically be registered on a Ke
 #### 
 
 ---
+<<<<<<< Updated upstream
 ##### [Go back up to the table of contents](#table-of-contents)
 ##### [Go back to the main page.](../../../README.md)
+=======
+##### [Go back up to the table of contents.](../../../README.md)
+>>>>>>> Stashed changes
 ---

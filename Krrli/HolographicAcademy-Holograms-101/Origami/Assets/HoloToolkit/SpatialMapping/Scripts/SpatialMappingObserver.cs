@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< Updated upstream
 
 #if UNITY_WSA
 #if UNITY_2017_2_OR_NEWER
@@ -12,6 +13,9 @@ using UnityEngine.XR.WSA;
 using UnityEngine.VR.WSA;
 #endif
 #endif
+=======
+using UnityEngine.VR.WSA;
+>>>>>>> Stashed changes
 
 namespace HoloToolkit.Unity.SpatialMapping
 {
@@ -72,8 +76,12 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <summary>
         /// Indicates the current type of the observed volume
         /// </summary>
+<<<<<<< Updated upstream
         [SerializeField]
         [Tooltip("The shape of the observation volume.")]
+=======
+        [SerializeField][Tooltip("The shape of the observation volume.")]
+>>>>>>> Stashed changes
         private ObserverVolumeTypes observerVolumeType = ObserverVolumeTypes.AxisAlignedBox;
         public ObserverVolumeTypes ObserverVolumeType
         {
@@ -83,7 +91,11 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
             set
             {
+<<<<<<< Updated upstream
                 if (observerVolumeType != value)
+=======
+                if(observerVolumeType != value)
+>>>>>>> Stashed changes
                 {
                     observerVolumeType = value;
                     SwitchObservedVolume();
@@ -91,7 +103,10 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
         }
 
+<<<<<<< Updated upstream
 #if UNITY_WSA
+=======
+>>>>>>> Stashed changes
         /// <summary>
         /// Our Surface Observer object for generating/updating Spatial Mapping data.
         /// </summary>
@@ -101,7 +116,10 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// A queue of surfaces that need their meshes created (or updated).
         /// </summary>
         private readonly Queue<SurfaceId> surfaceWorkQueue = new Queue<SurfaceId>();
+<<<<<<< Updated upstream
 #endif
+=======
+>>>>>>> Stashed changes
 
         /// <summary>
         /// To prevent too many meshes from being generated at the same time, we will
@@ -122,8 +140,12 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         private float updateTime;
 
+<<<<<<< Updated upstream
         [SerializeField]
         [Tooltip("The extents of the observation volume.")]
+=======
+        [SerializeField][Tooltip("The extents of the observation volume.")]
+>>>>>>> Stashed changes
         private Vector3 extents = Vector3.one * 10.0f;
         public Vector3 Extents
         {
@@ -133,7 +155,11 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
             set
             {
+<<<<<<< Updated upstream
                 if (extents != value)
+=======
+                if(extents != value)
+>>>>>>> Stashed changes
                 {
                     extents = value;
                     SwitchObservedVolume();
@@ -144,8 +170,12 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <summary>
         /// The origin of the observation volume.
         /// </summary>
+<<<<<<< Updated upstream
         [SerializeField]
         [Tooltip("The origin of the observation volume.")]
+=======
+        [SerializeField][Tooltip("The origin of the observation volume.")]
+>>>>>>> Stashed changes
         private Vector3 origin = Vector3.zero;
         public Vector3 Origin
         {
@@ -155,7 +185,11 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
             set
             {
+<<<<<<< Updated upstream
                 if (origin != value)
+=======
+                if(origin != value)
+>>>>>>> Stashed changes
                 {
                     origin = value;
                     SwitchObservedVolume();
@@ -166,8 +200,12 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <summary>
         /// The direction of the observed volume, if an oriented box is choosen.
         /// </summary>
+<<<<<<< Updated upstream
         [SerializeField]
         [Tooltip("The direction of the observation volume.")]
+=======
+        [SerializeField][Tooltip("The direction of the observation volume.")]
+>>>>>>> Stashed changes
         private Quaternion orientation = Quaternion.identity;
         public Quaternion Orientation
         {
@@ -177,11 +215,19 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
             set
             {
+<<<<<<< Updated upstream
                 if (orientation != value)
                 {
                     orientation = value;
                     // Only needs to be changed if the corresponding mode is active.
                     if (ObserverVolumeType == ObserverVolumeTypes.OrientedBox)
+=======
+                if(orientation != value)
+                {
+                    orientation = value;
+                    // Only needs to be changed if the corresponding mode is active.
+                    if(ObserverVolumeType == ObserverVolumeTypes.OrientedBox)
+>>>>>>> Stashed changes
                     {
                         SwitchObservedVolume();
                     }
@@ -196,7 +242,10 @@ namespace HoloToolkit.Unity.SpatialMapping
             ObserverState = ObserverStates.Stopped;
         }
 
+<<<<<<< Updated upstream
 #if UNITY_WSA
+=======
+>>>>>>> Stashed changes
         /// <summary>
         /// Called once per frame.
         /// </summary>
@@ -274,14 +323,20 @@ namespace HoloToolkit.Unity.SpatialMapping
                 }
             }
         }
+<<<<<<< Updated upstream
 #endif
+=======
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Starts the Surface Observer.
         /// </summary>
         public void StartObserving()
         {
+<<<<<<< Updated upstream
 #if UNITY_WSA
+=======
+>>>>>>> Stashed changes
             if (observer == null)
             {
                 observer = new SurfaceObserver();
@@ -296,7 +351,10 @@ namespace HoloToolkit.Unity.SpatialMapping
                 // We want the first update immediately.
                 updateTime = 0;
             }
+<<<<<<< Updated upstream
 #endif
+=======
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -305,7 +363,10 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <remarks>Sets the Surface Observer state to ObserverStates.Stopped.</remarks>
         public void StopObserving()
         {
+<<<<<<< Updated upstream
 #if UNITY_WSA
+=======
+>>>>>>> Stashed changes
             if (ObserverState == ObserverStates.Running)
             {
                 Debug.Log("Stopping the observer.");
@@ -314,7 +375,10 @@ namespace HoloToolkit.Unity.SpatialMapping
                 surfaceWorkQueue.Clear();
                 updateTime = 0;
             }
+<<<<<<< Updated upstream
 #endif
+=======
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -322,7 +386,10 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         public void CleanupObserver()
         {
+<<<<<<< Updated upstream
 #if UNITY_WSA
+=======
+>>>>>>> Stashed changes
             StopObserving();
 
             if (observer != null)
@@ -344,7 +411,10 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
 
             Cleanup();
+<<<<<<< Updated upstream
 #endif
+=======
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -355,13 +425,19 @@ namespace HoloToolkit.Unity.SpatialMapping
         {
             bool originUpdated = false;
 
+<<<<<<< Updated upstream
 #if UNITY_WSA
+=======
+>>>>>>> Stashed changes
             if (observer != null)
             {
                 Origin = origin;
                 originUpdated = true;
             }
+<<<<<<< Updated upstream
 #endif
+=======
+>>>>>>> Stashed changes
 
             return originUpdated;
         }
@@ -371,10 +447,16 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         private void SwitchObservedVolume()
         {
+<<<<<<< Updated upstream
 #if UNITY_WSA
             if (observer == null)
             {
                 return;
+=======
+            if (observer == null)
+            {
+              return;
+>>>>>>> Stashed changes
             }
 
             switch (observerVolumeType)
@@ -392,10 +474,16 @@ namespace HoloToolkit.Unity.SpatialMapping
                     observer.SetVolumeAsAxisAlignedBox(origin, extents);
                     break;
             }
+<<<<<<< Updated upstream
 #endif
         }
 
 #if UNITY_WSA
+=======
+            
+        }
+
+>>>>>>> Stashed changes
         /// <summary>
         /// Handles the SurfaceObserver's OnDataReady event.
         /// </summary>
@@ -493,6 +581,7 @@ namespace HoloToolkit.Unity.SpatialMapping
                     break;
             }
         }
+<<<<<<< Updated upstream
         private bool IsMatchingSurface(SurfaceObject surfaceObject, SurfaceData surfaceData)
         {
             return (surfaceObject.ID == surfaceData.id.handle)
@@ -501,6 +590,8 @@ namespace HoloToolkit.Unity.SpatialMapping
                 ;
         }
 #endif
+=======
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Called when the GameObject is unloaded.
@@ -526,5 +617,16 @@ namespace HoloToolkit.Unity.SpatialMapping
                 CleanUpSurface(availableSurface);
             }
         }
+<<<<<<< Updated upstream
+=======
+
+        private bool IsMatchingSurface(SurfaceObject surfaceObject, SurfaceData surfaceData)
+        {
+            return (surfaceObject.ID == surfaceData.id.handle)
+                && (surfaceObject.Filter == surfaceData.outputMesh)
+                && (surfaceObject.Collider == surfaceData.outputCollider)
+                ;
+        }
+>>>>>>> Stashed changes
     }
 }

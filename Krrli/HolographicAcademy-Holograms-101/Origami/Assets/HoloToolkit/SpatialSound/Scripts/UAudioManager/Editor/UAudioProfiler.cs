@@ -21,7 +21,11 @@ namespace HoloToolkit.Unity
             public string BusName = "";
         }
 
+<<<<<<< Updated upstream
         [MenuItem("Mixed Reality Toolkit/UAudioTools/Profiler", false, 200)]
+=======
+        [MenuItem("HoloToolkit/UAudioTools/Profiler", false, 200)]
+>>>>>>> Stashed changes
         static void ShowEditor()
         {
             UAudioProfiler profilerWindow = GetWindow<UAudioProfiler>();
@@ -65,17 +69,29 @@ namespace HoloToolkit.Unity
             {
                 ActiveEvent currentEvent = activeEvents[i];
                 ProfilerEvent tempEvent = new ProfilerEvent();
+<<<<<<< Updated upstream
                 tempEvent.EventName = currentEvent.AudioEvent.Name;
                 tempEvent.EmitterName = currentEvent.AudioEmitter.name;
 
                 // The bus might be null, Unity defaults to Editor-hidden master bus.
                 if (currentEvent.AudioEvent.AudioBus == null)
+=======
+                tempEvent.EventName = currentEvent.audioEvent.name;
+                tempEvent.EmitterName = currentEvent.AudioEmitter.name;
+
+                // The bus might be null, Unity defaults to Editor-hidden master bus.
+                if (currentEvent.audioEvent.bus == null)
+>>>>>>> Stashed changes
                 {
                     tempEvent.BusName = "-MasterBus-";
                 }
                 else
                 {
+<<<<<<< Updated upstream
                     tempEvent.BusName = currentEvent.AudioEvent.AudioBus.name;
+=======
+                    tempEvent.BusName = currentEvent.audioEvent.bus.name;
+>>>>>>> Stashed changes
                 }
 
                 currentEvents[i] = tempEvent;

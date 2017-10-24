@@ -3,6 +3,7 @@
 
 using HoloToolkit.Unity.InputModule;
 using UnityEngine;
+<<<<<<< Updated upstream
 
 #if UNITY_WSA
 #if UNITY_2017_2_OR_NEWER
@@ -11,6 +12,9 @@ using UnityEngine.XR.WSA;
 using UnityEngine.VR.WSA;
 #endif
 #endif
+=======
+using UnityEngine.VR.WSA;
+>>>>>>> Stashed changes
 
 namespace HoloToolkit.Unity
 {
@@ -138,11 +142,19 @@ namespace HoloToolkit.Unity
         {
             get
             {
+<<<<<<< Updated upstream
                 if (GazeManager.IsInitialized)
                 {
                     return GazeManager.Instance.GazeOrigin;
                 }
                 return CameraCache.Main.transform.position;
+=======
+                if (GazeManager.Instance != null)
+                {
+                    return GazeManager.Instance.GazeOrigin;
+                }
+                return Camera.main.transform.position;
+>>>>>>> Stashed changes
             }
         }
 
@@ -153,11 +165,19 @@ namespace HoloToolkit.Unity
         {
             get
             {
+<<<<<<< Updated upstream
                 if (GazeManager.IsInitialized)
                 {
                     return GazeManager.Instance.GazeNormal;
                 }
                 return CameraCache.Main.transform.forward;
+=======
+                if (GazeManager.Instance != null)
+                {
+                    return GazeManager.Instance.GazeNormal;
+                }
+                return Camera.main.transform.forward;
+>>>>>>> Stashed changes
             }
         }
 
@@ -168,7 +188,11 @@ namespace HoloToolkit.Unity
         /// <returns>True if gaze is supported and an object was hit by gaze, otherwise false.</returns>
         private bool TryGetGazeHitPosition(out Vector3 hitPosition)
         {
+<<<<<<< Updated upstream
             if (GazeManager.IsInitialized)
+=======
+            if (GazeManager.Instance != null)
+>>>>>>> Stashed changes
             {
                 hitPosition = GazeManager.Instance.HitPosition;
                 return true;
@@ -189,11 +213,17 @@ namespace HoloToolkit.Unity
             {
                 velocity = UpdateVelocity(deltaTime);
             }
+<<<<<<< Updated upstream
 
 #if UNITY_WSA
             // Place the plane at the desired depth in front of the user and billboard it to the gaze origin.
             HolographicSettings.SetFocusPointForFrame(planePosition, -GazeNormal, velocity);
 #endif
+=======
+            
+            // Place the plane at the desired depth in front of the user and billboard it to the gaze origin.
+            HolographicSettings.SetFocusPointForFrame(planePosition, -GazeNormal, velocity);
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -215,7 +245,11 @@ namespace HoloToolkit.Unity
             {
                 focusPointDistance = DefaultPlaneDistance;
             }
+<<<<<<< Updated upstream
 
+=======
+            
+>>>>>>> Stashed changes
             float lerpPower = focusPointDistance > currentPlaneDistance ? LerpStabilizationPlanePowerFarther
                                                                         : LerpStabilizationPlanePowerCloser;
 
@@ -224,9 +258,13 @@ namespace HoloToolkit.Unity
 
             planePosition = gazeOrigin + (gazeDirection * currentPlaneDistance);
 
+<<<<<<< Updated upstream
 #if UNITY_WSA
             HolographicSettings.SetFocusPointForFrame(planePosition, -gazeDirection, Vector3.zero);
 #endif
+=======
+            HolographicSettings.SetFocusPointForFrame(planePosition, -gazeDirection, Vector3.zero);
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -244,9 +282,13 @@ namespace HoloToolkit.Unity
             currentPlaneDistance = Mathf.Lerp(currentPlaneDistance, DefaultPlaneDistance, lerpPower * deltaTime);
 
             planePosition = gazeOrigin + (gazeNormal * currentPlaneDistance);
+<<<<<<< Updated upstream
 #if UNITY_WSA
             HolographicSettings.SetFocusPointForFrame(planePosition, -gazeNormal, Vector3.zero);
 #endif
+=======
+            HolographicSettings.SetFocusPointForFrame(planePosition, -gazeNormal, Vector3.zero);
+>>>>>>> Stashed changes
         }
 
         /// <summary>

@@ -6,10 +6,16 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+using System.Threading.Tasks;
+using Windows.Storage;
+>>>>>>> Stashed changes
 #endif
 
 namespace HoloToolkit.Unity.SpatialMapping
@@ -31,7 +37,11 @@ namespace HoloToolkit.Unity.SpatialMapping
         {
             get
             {
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
                 return ApplicationData.Current.RoamingFolder.Path;
 #else
                 return Application.persistentDataPath;
@@ -154,14 +164,22 @@ namespace HoloToolkit.Unity.SpatialMapping
         {
             Stream stream = null;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
             Task<Task> task = Task<Task>.Factory.StartNew(
                             async () =>
                             {
                                 StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(folderName);
                                 StorageFile file = await folder.GetFileAsync(fileName);
+<<<<<<< Updated upstream
                                 IRandomAccessStreamWithContentType randomAccessStream = await file.OpenReadAsync();
                                 stream = randomAccessStream.AsStreamForRead();
+=======
+                                stream = await file.OpenStreamForReadAsync();
+>>>>>>> Stashed changes
                             });
             task.Wait();
             task.Result.Wait();
@@ -182,14 +200,22 @@ namespace HoloToolkit.Unity.SpatialMapping
         {
             Stream stream = null;
 
+<<<<<<< Updated upstream
 #if !UNITY_EDITOR && UNITY_WSA
+=======
+#if !UNITY_EDITOR && UNITY_METRO
+>>>>>>> Stashed changes
             Task<Task> task = Task<Task>.Factory.StartNew(
                             async () =>
                             {
                                 StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(folderName);
                                 StorageFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+<<<<<<< Updated upstream
                                 IRandomAccessStream randomAccessStream = await file.OpenAsync(FileAccessMode.ReadWrite);
                                 stream = randomAccessStream.AsStreamForWrite();
+=======
+                                stream = await file.OpenStreamForWriteAsync();
+>>>>>>> Stashed changes
                             });
             task.Wait();
             task.Result.Wait();

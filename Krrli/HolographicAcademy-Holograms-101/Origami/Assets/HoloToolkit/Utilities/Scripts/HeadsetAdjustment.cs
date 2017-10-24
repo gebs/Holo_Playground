@@ -21,7 +21,11 @@ namespace HoloToolkit.Unity
             GotoNextScene();
         }
 
+<<<<<<< Updated upstream
         public void OnSpeechKeywordRecognized(SpeechEventData eventData)
+=======
+        public void OnSpeechKeywordRecognized(SpeechKeywordRecognizedEventData eventData)
+>>>>>>> Stashed changes
         {
             GotoNextScene();
         }

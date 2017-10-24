@@ -14,6 +14,7 @@ namespace HoloToolkit.Sharing
     public class SharingStage : Singleton<SharingStage>
     {
         /// <summary> 
+<<<<<<< Updated upstream
         /// SharingManagerConnected event notifies when the sharing manager is created and connected.
         /// </summary> 
         public event EventHandler SharingManagerConnected;
@@ -27,12 +28,27 @@ namespace HoloToolkit.Sharing
         /// Default username to use when joining a session.
         /// </summary>
         /// <remarks>Set the user name with the <see cref="UserName"/> property.</remarks>
+=======
+        /// SharingManagerConnected event notifies when the sharing manager is created and connected. 
+        /// </summary> 
+        public event EventHandler SharingManagerConnected;
+
+        /// <summary>
+        /// Default username to use when joining a session.
+        /// </summary>
+        /// <remarks>User code should set the user name by setting the UserName property.</remarks>
+>>>>>>> Stashed changes
         private const string DefaultUserName = "User ";
 
         /// <summary>
         /// Set whether this app should be a Primary or Secondary client.
+<<<<<<< Updated upstream
         /// <para> Primary: Connects directly to the Session Server, can create/join/leave sessions.</para>
         /// <para> Secondary: Connects to a Primary client.  Cannot do any session management.</para>
+=======
+        /// Primary: Connects directly to the Session Server, can create/join/leave sessions
+        /// Secondary: Connects to a Primary client.  Cannot do any session management
+>>>>>>> Stashed changes
         /// </summary>
         public ClientRole ClientRole = ClientRole.Primary;
 
@@ -43,6 +59,7 @@ namespace HoloToolkit.Sharing
         public string ServerAddress = "localhost";
 
         /// <summary>
+<<<<<<< Updated upstream
         /// The current session.
         /// </summary>
         public string SessionName
@@ -82,6 +99,8 @@ namespace HoloToolkit.Sharing
         public bool KeepRoomAlive;
 
         /// <summary>
+=======
+>>>>>>> Stashed changes
         /// Port of the sharing server.
         /// </summary>
         [Tooltip("Port of the sharing server")]
@@ -107,7 +126,11 @@ namespace HoloToolkit.Sharing
         public bool IsAudioEndpoint = true;
 
         /// <summary>
+<<<<<<< Updated upstream
         /// Pipes sharing server console output to Unity's output window for debugging.
+=======
+        /// Pipes XTools console output to Unity's output window for debugging
+>>>>>>> Stashed changes
         /// </summary>
         private ConsoleLogWriter logWriter;
 
@@ -119,8 +142,11 @@ namespace HoloToolkit.Sharing
         /// <summary>
         /// Server sessions tracker.
         /// </summary>
+<<<<<<< Updated upstream
         /// <remarks>Note that if this processes takes the role of a secondary client,
         ///  then the sessionsTracker will always be null.</remarks>
+=======
+>>>>>>> Stashed changes
         public ServerSessionsTracker SessionsTracker { get; private set; }
 
         /// <summary>
@@ -145,7 +171,11 @@ namespace HoloToolkit.Sharing
         public event Action<string> UserNameChanged;
 
         /// <summary> 
+<<<<<<< Updated upstream
         /// Enables Server Discovery on the network.
+=======
+        /// Enables Server Discovery on the network 
+>>>>>>> Stashed changes
         /// </summary> 
         private DiscoveryClient discoveryClient;
 
@@ -164,10 +194,14 @@ namespace HoloToolkit.Sharing
         /// </summary>
         private bool isTryingToFindServer;
 
+<<<<<<< Updated upstream
         /// <summary>
         /// Show Detailed Information for sharing services.
         /// </summary>
         [Tooltip("Show Detailed Information for sharing services.")]
+=======
+        [Tooltip("Show Detailed Information for server connections")]
+>>>>>>> Stashed changes
         public bool ShowDetailedLogs;
 
         public string UserName
@@ -193,6 +227,7 @@ namespace HoloToolkit.Sharing
             }
         }
 
+<<<<<<< Updated upstream
         /// <summary>
         /// Provides updates when rooms change.
         /// </summary>
@@ -210,6 +245,20 @@ namespace HoloToolkit.Sharing
         public NetworkConnection Connection
         {
             get { return Manager != null ? Manager.GetServerConnection() : null; }
+=======
+        private NetworkConnectionAdapter networkConnectionAdapter;
+        private NetworkConnection networkConnection;
+        public NetworkConnection Connection
+        {
+            get
+            {
+                if (networkConnection == null && Manager != null)
+                {
+                    networkConnection = Manager.GetServerConnection();
+                }
+                return networkConnection;
+            }
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -217,17 +266,35 @@ namespace HoloToolkit.Sharing
         /// </summary>
         public bool IsConnected
         {
+<<<<<<< Updated upstream
             get { return Manager != null && Connection != null && Connection.IsConnected(); }
         }
 
         #region Unity Methods
+=======
+            get
+            {
+                if (Manager != null && Connection != null)
+                {
+                    return Connection.IsConnected();
+                }
+
+                return false;
+            }
+        }
+>>>>>>> Stashed changes
 
         protected override void Awake()
         {
             base.Awake();
 
             AppInstanceUniqueId = Guid.NewGuid().ToString();
+<<<<<<< Updated upstream
             logWriter = new ConsoleLogWriter { ShowDetailedLogs = ShowDetailedLogs };
+=======
+            logWriter = new ConsoleLogWriter();
+            logWriter.ShowDetailedLogs = ShowDetailedLogs;
+>>>>>>> Stashed changes
 
             if (AutoDiscoverServer)
             {
@@ -235,6 +302,7 @@ namespace HoloToolkit.Sharing
             }
             else
             {
+<<<<<<< Updated upstream
                 ManagerInit(connectOnAwake);
             }
         }
@@ -263,6 +331,12 @@ namespace HoloToolkit.Sharing
             Application.logMessageReceived -= OnLogReceived;
         }
 
+=======
+                Connect();
+            }
+        }
+
+>>>>>>> Stashed changes
         protected override void OnDestroy()
         {
             if (discoveryClient != null)
@@ -278,6 +352,17 @@ namespace HoloToolkit.Sharing
                 }
             }
 
+<<<<<<< Updated upstream
+=======
+            if (Manager != null)
+            {
+                // Force a disconnection so that we can stop and start Unity without connections hanging around
+                Manager.GetPairedConnection().Disconnect();
+                Manager.GetServerConnection().Disconnect();
+            }
+
+            // Release the Sharing resources
+>>>>>>> Stashed changes
             if (SessionUsersTracker != null)
             {
                 SessionUsersTracker.Dispose();
@@ -290,10 +375,18 @@ namespace HoloToolkit.Sharing
                 SessionsTracker = null;
             }
 
+<<<<<<< Updated upstream
             if (Connection != null)
             {
                 Connection.RemoveListener((byte)MessageID.StatusOnly, networkConnectionAdapter);
                 Connection.Dispose();
+=======
+            if (networkConnection != null)
+            {
+                networkConnection.RemoveListener((byte)MessageID.StatusOnly, networkConnectionAdapter);
+                networkConnection.Dispose();
+                networkConnection = null;
+>>>>>>> Stashed changes
 
                 if (networkConnectionAdapter != null)
                 {
@@ -304,19 +397,27 @@ namespace HoloToolkit.Sharing
 
             if (Manager != null)
             {
+<<<<<<< Updated upstream
                 // Force a disconnection so that we can stop and start Unity without connections hanging around.
                 Manager.GetPairedConnection().Disconnect();
                 Manager.GetServerConnection().Disconnect();
+=======
+>>>>>>> Stashed changes
                 Manager.Dispose();
                 Manager = null;
             }
 
+<<<<<<< Updated upstream
             // Forces a garbage collection to try to clean up any additional reference to SWIG-wrapped objects.
+=======
+            // Forces a garbage collection to try to clean up any additional reference to SWIG-wrapped objects
+>>>>>>> Stashed changes
             GC.Collect();
 
             base.OnDestroy();
         }
 
+<<<<<<< Updated upstream
         #endregion // Unity Methods
 
         #region Event Callbacks
@@ -389,12 +490,34 @@ namespace HoloToolkit.Sharing
         #endregion // Event Callbacks
 
         private void ManagerInit(bool setConnection)
+=======
+        private void LateUpdate()
+        {
+            if (isTryingToFindServer)
+            {
+                AutoDiscoverUpdate();
+            }
+
+            if (Manager != null)
+            {
+                // Update the XToolsManager to processes any network messages that have arrived
+                Manager.Update();
+            }
+        }
+
+        private void Connect()
+>>>>>>> Stashed changes
         {
             var config = new ClientConfig(ClientRole);
             config.SetIsAudioEndpoint(IsAudioEndpoint);
             config.SetLogWriter(logWriter);
 
+<<<<<<< Updated upstream
             if (setConnection)
+=======
+            // Only set the server info is we are connecting on awake
+            if (connectOnAwake)
+>>>>>>> Stashed changes
             {
                 config.SetServerAddress(ServerAddress);
                 config.SetServerPort(ServerPort);
@@ -402,11 +525,19 @@ namespace HoloToolkit.Sharing
 
             Manager = SharingManager.Create(config);
 
+<<<<<<< Updated upstream
             // Set up callbacks so that we know when we've connected successfully.
             networkConnectionAdapter = new NetworkConnectionAdapter();
             networkConnectionAdapter.ConnectedCallback += OnNetworkConnectionChanged;
             networkConnectionAdapter.DisconnectedCallback += OnNetworkConnectionChanged;
             Connection.AddListener((byte)MessageID.StatusOnly, networkConnectionAdapter);
+=======
+            //set up callbacks so that we know when we've connected successfully
+            networkConnection = Manager.GetServerConnection();
+            networkConnectionAdapter = new NetworkConnectionAdapter();
+            networkConnectionAdapter.ConnectedCallback += NetworkConnectionAdapter_ConnectedCallback;
+            networkConnection.AddListener((byte)MessageID.StatusOnly, networkConnectionAdapter);
+>>>>>>> Stashed changes
 
             SyncStateListener = new SyncStateListener();
             Manager.RegisterSyncListener(SyncStateListener);
@@ -416,10 +547,13 @@ namespace HoloToolkit.Sharing
             SessionsTracker = new ServerSessionsTracker(Manager.GetSessionManager());
             SessionUsersTracker = new SessionUsersTracker(SessionsTracker);
 
+<<<<<<< Updated upstream
             RoomManagerAdapter = new RoomManagerAdapter();
 
             CurrentRoomManager.AddListener(RoomManagerAdapter);
 
+=======
+>>>>>>> Stashed changes
             using (var userName = new XString(DefaultUserName))
             {
 #if UNITY_WSA && !UNITY_EDITOR
@@ -438,26 +572,62 @@ namespace HoloToolkit.Sharing
             }
         }
 
+<<<<<<< Updated upstream
+=======
+        private void NetworkConnectionAdapter_ConnectedCallback(NetworkConnection obj)
+        {
+            SendConnectedNotification();
+        }
+
+        private void SendConnectedNotification()
+        {
+            if (Manager.GetServerConnection().IsConnected())
+            {
+                //Send notification that we're connected 
+                EventHandler connectedEvent = SharingManagerConnected;
+                if (connectedEvent != null)
+                {
+                    connectedEvent(this, EventArgs.Empty);
+                }
+            }
+            else
+            {
+                Log.Error(string.Format("Cannot connect to server {0}:{1}", ServerAddress, ServerPort.ToString()));
+            }
+        }
+
+>>>>>>> Stashed changes
         private void AutoDiscoverInit()
         {
             if (ShowDetailedLogs)
             {
                 Debug.Log("Looking for servers...");
             }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             discoveryClientAdapter = new DiscoveryClientAdapter();
             discoveryClientAdapter.DiscoveredEvent += OnSystemDiscovered;
 
             discoveryClient = DiscoveryClient.Create();
             discoveryClient.AddListener(discoveryClientAdapter);
 
+<<<<<<< Updated upstream
             // Start Finding Server.
+=======
+            //Start Finding Server 
+>>>>>>> Stashed changes
             isTryingToFindServer = true;
         }
 
         private void AutoDiscoverUpdate()
         {
+<<<<<<< Updated upstream
             // Searching Enabled-> Update DiscoveryClient to check results, Wait Interval then Ping network.
+=======
+            //Searching Enabled-> Update DiscoveryClient to check results, Wait Interval then Ping network. 
+>>>>>>> Stashed changes
             pingIntervalCurrent += Time.deltaTime;
             if (pingIntervalCurrent > PingIntervalSec)
             {
@@ -465,6 +635,7 @@ namespace HoloToolkit.Sharing
                 {
                     Debug.Log("Looking for servers...");
                 }
+<<<<<<< Updated upstream
 
                 pingIntervalCurrent = 0;
                 discoveryClient.Ping();
@@ -473,6 +644,33 @@ namespace HoloToolkit.Sharing
             discoveryClient.Update();
         }
 
+=======
+                pingIntervalCurrent = 0;
+                discoveryClient.Ping();
+            }
+            discoveryClient.Update();
+        }
+
+        private void OnSystemDiscovered(DiscoveredSystem obj)
+        {
+            if (obj.GetRole() == SystemRole.SessionDiscoveryServerRole)
+            {
+                //Found a server. Stop pinging the network and connect 
+                isTryingToFindServer = false;
+                ServerAddress = obj.GetAddress();
+                if (ShowDetailedLogs)
+                {
+                    Debug.Log("Server discovered at: " + ServerAddress);
+                }
+                Connect();
+                if (ShowDetailedLogs)
+                {
+                    Debug.LogFormat("Connected to: {0}:{1}", ServerAddress, ServerPort.ToString());
+                }
+            }
+        }
+
+>>>>>>> Stashed changes
         public void ConnectToServer(string serverAddress, int port)
         {
             ServerAddress = serverAddress;
@@ -482,8 +680,47 @@ namespace HoloToolkit.Sharing
 
         public void ConnectToServer()
         {
+<<<<<<< Updated upstream
             SessionsTracker.LeaveCurrentSession();
             Manager.SetServerConnectionInfo(ServerAddress, (uint)ServerPort);
         }
+=======
+            Manager.SetServerConnectionInfo(ServerAddress, (uint)ServerPort);
+        }
+
+        private void OnEnable()
+        {
+            Application.logMessageReceived += HandleLog;
+        }
+
+        private void OnDisable()
+        {
+            Application.logMessageReceived -= HandleLog;
+        }
+
+        private void HandleLog(string logString, string stackTrace, LogType type)
+        {
+            switch (type)
+            {
+                case LogType.Error:
+                case LogType.Assert:
+                case LogType.Exception:
+                    Log.Error(string.Format("{0} \n {1}", logString, stackTrace));
+                    break;
+
+                case LogType.Warning:
+                    Log.Warning(string.Format("{0} \n {1}", logString, stackTrace));
+                    break;
+
+                case LogType.Log:
+                default:
+                    if (ShowDetailedLogs)
+                    {
+                        Log.Info(logString);
+                    }
+                    break;
+            }
+        }
+>>>>>>> Stashed changes
     }
 }

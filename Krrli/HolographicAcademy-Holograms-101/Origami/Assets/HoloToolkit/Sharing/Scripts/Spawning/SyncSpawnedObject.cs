@@ -16,7 +16,11 @@ namespace HoloToolkit.Sharing.Spawning
     public class SyncSpawnedObject : SyncObject
     {
         /// <summary>
+<<<<<<< Updated upstream
         /// Transform (position, rotation, and scale) for the object.
+=======
+        /// Transform (position, orientation and scale) for the object.
+>>>>>>> Stashed changes
         /// </summary>
         [SyncData] public SyncTransform Transform;
 

@@ -111,6 +111,7 @@ namespace HoloToolkit.Unity
         private List<IAudioInfluencer> GetInfluencers()
         {
             List<IAudioInfluencer> influencers = new List<IAudioInfluencer>();
+<<<<<<< Updated upstream
             Transform cameraTransform = CameraCache.Main.transform;
             // For influencers that take effect only when between the emitter and the user, perform a raycast
             // from the user toward the object.
@@ -118,6 +119,15 @@ namespace HoloToolkit.Unity
             float distance = Vector3.Distance(cameraTransform.position, gameObject.transform.position);
 
             int count = Physics.RaycastNonAlloc(cameraTransform.position,
+=======
+
+            // For influencers that take effect only when between the emitter and the user, perform a raycast
+            // from the user toward the object.
+            Vector3 direction = (gameObject.transform.position - Camera.main.transform.position).normalized;
+            float distance = Vector3.Distance(Camera.main.transform.position, gameObject.transform.position);
+
+            int count = Physics.RaycastNonAlloc(Camera.main.transform.position,
+>>>>>>> Stashed changes
                                                 direction,
                                                 hits,
                                                 distance,

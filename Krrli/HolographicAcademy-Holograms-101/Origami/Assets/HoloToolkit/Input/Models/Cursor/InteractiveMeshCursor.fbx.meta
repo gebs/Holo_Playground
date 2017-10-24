@@ -18,7 +18,11 @@ ModelImporter:
     4300000: CursorDot
     4300002: CursorRing
   materials:
+<<<<<<< Updated upstream
     importMaterials: 0
+=======
+    importMaterials: 1
+>>>>>>> Stashed changes
     materialName: 0
     materialSearch: 1
   animations:
@@ -27,8 +31,11 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+<<<<<<< Updated upstream
     rigImportErrors: 
     rigImportWarnings: 
+=======
+>>>>>>> Stashed changes
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -65,7 +72,10 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+<<<<<<< Updated upstream
     serializedVersion: 2
+=======
+>>>>>>> Stashed changes
     human: []
     skeleton: []
     armTwist: 0.5
@@ -76,10 +86,14 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+<<<<<<< Updated upstream
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
+=======
+    hasTranslationDoF: 0
+>>>>>>> Stashed changes
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1

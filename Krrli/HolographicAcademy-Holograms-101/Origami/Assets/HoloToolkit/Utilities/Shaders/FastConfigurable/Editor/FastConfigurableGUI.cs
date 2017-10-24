@@ -112,8 +112,12 @@ namespace HoloToolkit.Unity
             {
                 matEditor.ShaderProperty(vertexColorEnabled, Styles.vertexColorEnabled);
 
+<<<<<<< Updated upstream
                 CustomMaterialEditor.TextureWithToggleableColorAutoScaleOffsetSingleLine(matEditor,
                                                                                          Styles.main,
+=======
+                CustomMaterialEditor.TextureWithToggleableColorAutoScaleOffsetSingleLine(matEditor, Styles.main,
+>>>>>>> Stashed changes
                                                                                          mainTexture,
                                                                                          mainColorEnabled, mainColor,
                                                                                          textureScaleAndOffset);
@@ -180,7 +184,11 @@ namespace HoloToolkit.Unity
 
             ShaderGUIUtils.BeginHeader("Global");
             {
+<<<<<<< Updated upstream
                 CustomMaterialEditor.TextureScaleOffsetVector4Property(matEditor, textureScaleAndOffset);
+=======
+                CustomMaterialEditor.TextureScaleOffsetVector4Property(matEditor, Styles.textureScaleAndOffset, textureScaleAndOffset);
+>>>>>>> Stashed changes
             }
             ShaderGUIUtils.EndHeader();
             ShaderGUIUtils.HeaderSeparator();

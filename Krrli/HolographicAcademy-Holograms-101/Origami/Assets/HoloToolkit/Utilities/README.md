@@ -14,16 +14,24 @@ A drop in direction indicator that stays in the users view at all times.
 #### HeadsUpDirectionIndicatorPointer.prefab
 A quad based pointer to be used with the HeadsUpDirectionIndicator prefab to create an out of box direction indicator.
 
+<<<<<<< Updated upstream
 ### [Scenes](Scenes)
 ---
 
 #### HeadsetAdjustment.unity
+=======
+###[Scenes](Scenes)
+---
+
+####HeadsetAdjustment.unity
+>>>>>>> Stashed changes
 Helps the user adjust the headset so that he/she gets the full experience in demo scenarios. 
 
 When demoing an app, it is important to ensure that the user has the headset on properly. This scene shows a border at the edge of the user's field of view and instructs him/her to adjust the headset until all four edges are visible. The user (or the demonstrator) can then air-tap or say "I'm ready" to proceed to the actual experience. 
 
 This scene is designed to be the first scene the user sees, once the experience is ready to begin. Once the user is ready, it loads either the next scene in the sequence or a scene specified by the NextSceneName property of the HeadsetAdjustment script.
 
+<<<<<<< Updated upstream
 #### SceneLauncher.unity
 Creates a menu allowing you to jump to any scene in your project.
 
@@ -36,6 +44,8 @@ To run the SceneLauncher:
 4. Air tap a scene to load it.
 5. When finished with a scene, say "Scene Launcher" or press the Backspace key to return the the scene list.
 
+=======
+>>>>>>> Stashed changes
 ### [Scripts](Scripts)
 ---
 Utilitiy Scripts.
@@ -123,9 +133,12 @@ TODO: Remove if reduncatnt to InterpolatedVector3.cs
 
 ---
 
+<<<<<<< Updated upstream
 #### ApplicationViewManager.cs
 Switchs app to a XAML page view, and waits for a return value from it.
 
+=======
+>>>>>>> Stashed changes
 #### Billboard.cs
 Rotates a hologram so it is always facing towards the camera.
 
@@ -148,9 +161,12 @@ You must provide GameObjects for the **_Cursor_** and **_DirectionIndicatorObjec
 
 **TitleSafeFactor** The percentage the GameObject can be within the view frustum for the DirectionIndicatorObject to start appearing.  A value of 0 will display the DirectionIndicatorObject when the GameObject leaves the view.  0.1 will display when the GameObject is 10% away from the edge of the view.  -0.1 will display when the GameObject is 10% out of view.
 
+<<<<<<< Updated upstream
 #### DisplayDependentObjectActivator.cs
 Causes a GameObject to activate or disable depending on the settings and type of display the application is launched on.
 
+=======
+>>>>>>> Stashed changes
 #### FixedAngularSize.cs
 Causes a hologram to maintain a fixed angular size, which is to say it occupies the same pixels in the view regardless of its distance from the camera.
 
@@ -170,7 +186,11 @@ A MonoBehaviour that interpolates a transform's position, rotation or scale.
 Math Utilities class.
 
 #### NearPlaneFade.cs
+<<<<<<< Updated upstream
 Updates the shader parameters for use in near plane fading.
+=======
+Updates the shader parameters for use in near plade fading.
+>>>>>>> Stashed changes
 
 #### PriorityQueue.cs
 Min-heap priority queue. In other words, lower priorities will be removed from the queue first.
@@ -215,17 +235,60 @@ Wrapper around world anchor store to streamline some of the persistence api busy
 ### [Shaders](Shaders)
 ---
 
+<<<<<<< Updated upstream
 #### macro.cginc
 Preprocessor macros to support shaders
+=======
+#### FastConfigurable.shader
+Very fast shader that uses the Unity light system.  Compiles down to only performing the operations you're actually using.  Uses material property drawers rather than a custom editor for ease of maintenance.
+>>>>>>> Stashed changes
 
 #### HoloToolkitCommon.cginc
 Common shader functionality
 
+<<<<<<< Updated upstream
 #### FastConfigurable.shader
 Very fast shader that uses the Unity light system.  Compiles down to only performing the operations you're actually using.  Uses material property drawers rather than a custom editor for ease of maintenance.
 
 #### FastConfigurable2Sided.shader
 Similar attributes for FastConfigurable with the benefit of 2 sides!
+=======
+#### LambertianConfigurable.cginc
+Code shared between LambertianConfigurable.shader and LambertianConfigurableTransparent.shader.
+
+#### LambertianConfigurable.shader
+Feature configurable per-pixel lambertian shader.  Use when higher quality lighting is desired, but specular highlights are not needed.
+
+#### LambertianConfigurableTransparent.shader
+Feature configurable per-pixel lambertian transparent shader.  Use when higher quality lighting and transparency are desired, but specular highlights are not needed.
+
+#### macro.cginc
+Preprocessor macros to support shaders
+
+#### StandardFast.shader
+Higher performance drop-in replacement for the Unity Standard Shader.  Use when very high quality lighting (including reflections) is needed.
+
+#### UnlitConfigurable.cginc
+Code shared between UnlitConfigurable.shader and UnlitConfigurableTransparent.shader.
+
+#### UnlitConfigurable.shader
+Feature configurable unlit shader.  Use when no lighting is desired.
+
+#### UnlitConfigurableTransparent.shader
+Feature configurable unlit transparent shader.  Use when transparency and no lighting are desired.
+
+#### UnlitNoDepthTest.shader
+Render with a single texture but ignore depth test resuls so object always appears on top.
+
+#### VertexLitConfigurable.cginc
+Code shared between VertexLitConfigurable.shader and VertexLitConfigurableTransparent.shader.
+
+#### VertexLitConfigurable.shader
+Feature configurable vertex lit shader.  Use when a higher performance but lower precision lighting trade-off is acceptable.
+
+#### VertexLitConfigurableTransparent.shader
+Feature configurable vertex lit transparent shader.  Use when a higher performance but lower precision lighting trade-off is acceptable, and transparency is needed.
+>>>>>>> Stashed changes
 
 #### WindowOcclusion.shader
 A simple occlusion shader that can be used to hide other objects. This prevents other objects from being rendered by drawing invisible 'opaque' pixels to the depth buffer. This shader differs from Occlusion.shader in that it doesn't have any depth offset, so it should sort as expected with other objects adjacent to the window.

@@ -13,9 +13,16 @@ namespace HoloToolkit.Unity
     public class MiniAudioEvent : AudioEvent
     {
         [Tooltip("The primary AudioSource.")]
+<<<<<<< Updated upstream
         public AudioSource PrimarySource = null;
 
         [Tooltip("The secondary AudioSource for continuous containers.")]
         public AudioSource SecondarySource = null;
+=======
+        public AudioSource primarySource = null;
+
+        [Tooltip("The secondary AudioSource for continuous containers.")]
+        public AudioSource secondarySource = null;
+>>>>>>> Stashed changes
     }
 }

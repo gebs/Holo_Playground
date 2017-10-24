@@ -50,6 +50,10 @@ namespace HoloToolkit.Sharing
             if (sessionManager != null)
             {
                 sessionManagerAdapter = new SessionManagerAdapter();
+<<<<<<< Updated upstream
+=======
+                sessionManager.AddListener(sessionManagerAdapter);
+>>>>>>> Stashed changes
                 sessionManagerAdapter.ServerConnectedEvent += OnServerConnected;
                 sessionManagerAdapter.ServerDisconnectedEvent += OnServerDisconnected;
                 sessionManagerAdapter.SessionClosedEvent += OnSessionClosed;
@@ -59,7 +63,10 @@ namespace HoloToolkit.Sharing
                 sessionManagerAdapter.UserChangedEvent += OnUserChanged;
                 sessionManagerAdapter.UserJoinedSessionEvent += OnUserJoined;
                 sessionManagerAdapter.UserLeftSessionEvent += OnUserLeft;
+<<<<<<< Updated upstream
                 sessionManager.AddListener(sessionManagerAdapter);
+=======
+>>>>>>> Stashed changes
             }
         }
 
@@ -166,6 +173,7 @@ namespace HoloToolkit.Sharing
 
         private void OnSessionClosed(Session session)
         {
+<<<<<<< Updated upstream
             for (int i = 0; i < Sessions.Count; i++)
             {
                 if (Sessions[i].GetName().ToString().Equals(session.GetName().ToString()))
@@ -174,6 +182,10 @@ namespace HoloToolkit.Sharing
                     Sessions.Remove(Sessions[i]);
                 }
             }
+=======
+            SessionClosed.RaiseEvent(session);
+            Sessions.Remove(session);
+>>>>>>> Stashed changes
         }
 
         private void OnServerDisconnected()
