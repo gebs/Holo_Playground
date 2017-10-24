@@ -138,3 +138,5 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 1802df0c587099fd3895470c625ed810 Assembly-CSharp.dll:.SpatialMapping
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SphereCommands
 dd5481137759597d614818793c90a7fe Assembly-CSharp.dll:.AnimationSpeed
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TapToPlaceParent
+d4eda7979d74a959b9d660a6efbb35de Assembly-CSharp.dll:.HitTarget
