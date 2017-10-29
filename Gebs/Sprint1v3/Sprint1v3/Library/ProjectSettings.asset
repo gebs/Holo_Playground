@@ -515,7 +515,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Sprint1v3
   metroPackageVersion: 
-  metroCertificatePath: C:\Projects\Holo_Playground\Gebs\Sprint1v3\Sprint1v3\Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany

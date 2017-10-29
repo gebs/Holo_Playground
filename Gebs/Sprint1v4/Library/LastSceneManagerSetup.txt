@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/Gololens.unity
+  isLoaded: 1
+  isActive: 1

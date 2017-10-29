@@ -15,6 +15,7 @@ public class BoardPlacer : MonoBehaviour, IInputClickHandler, ISourceStateHandle
     void Start()
     {
         InputManager.Instance.PushFallbackInputHandler(gameObject);
+        
     }
 
     // Update is called once per frame
@@ -27,8 +28,8 @@ public class BoardPlacer : MonoBehaviour, IInputClickHandler, ISourceStateHandle
             var gazeDirection = Camera.main.transform.forward;
 
             RaycastHit hitInfo;
-
-            if (Physics.Raycast(headPosition, gazeDirection, out hitInfo, 30.0f, SpatialMappingManager.Instance.LayerMask))
+            
+            if (Physics.Raycast(headPosition, gazeDirection, out hitInfo, 30.0f, 31))
             {
                 gameObject.transform.parent.position = hitInfo.point;
 
