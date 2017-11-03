@@ -4,14 +4,14 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  productGUID: d00c83f8e58c5194790a502176c0535f
+  productGUID: f152639e9ae934c4f8f44b33d5821ac1
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: cube
+  productName: Cube
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -230,7 +230,11 @@ PlayerSettings:
   m_BuildTargetIcons: []
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
-  m_BuildTargetVRSettings: []
+  m_BuildTargetVRSettings:
+  - m_BuildTarget: Metro
+    m_Enabled: 1
+    m_Devices:
+    - HoloLens
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   webPlayerTemplate: APPLICATION:Default
@@ -501,21 +505,22 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Metro: 2
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: cube
+  metroPackageName: Cube
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: cube
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 00e93027a273d401
+  metroApplicationDescription: Cube
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -529,7 +534,11 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
     a: 1}
   metroSplashScreenUseBackgroundColor: 0
-  platformCapabilities: {}
+  platformCapabilities:
+    WindowsStoreApps:
+      HumanInterfaceDevice: False
+      InternetClientServer: True
+      PrivateNetworkClientServer: True
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 
@@ -586,13 +595,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled:
-    UNet: 1
+  cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: a657d85a-12b4-4d6c-9ef9-276b810b79fc
-  projectName: cube
-  organizationId: carlaiten
+  cloudProjectId: 
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
